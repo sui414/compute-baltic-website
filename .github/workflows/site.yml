@@ -1,0 +1,36 @@
+name: site
+on:
+  schedule:
+    - cron: '45 16 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: site
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: prepare
+        run: |
+          printf '%s\n' "${{ secrets.PRIVATE_DEPLOY_KEY }}" > "$RUNNER_TEMP/dk"
+          chmod 600 "$RUNNER_TEMP/dk"
+          printf '%s\n' "${{ secrets.OPS_ENV }}" > "$RUNNER_TEMP/ops.env"
+      - name: run
+        env:
+          GIT_SSH_COMMAND: ssh -i ${{ runner.temp }}/dk -o StrictHostKeyChecking=accept-new
+        run: |
+          git clone --depth 50 git@github.com:sui414/compute-baltic-data.git "$RUNNER_TEMP/w"
+          set -a; . "$RUNNER_TEMP/ops.env"; set +a
+          export SITE_DIR="$GITHUB_WORKSPACE"
+          cd "$RUNNER_TEMP/w" && bash ops/c.sh
+      - name: deploy
+        run: |
+          git config user.name "cb-bot"; git config user.email "bot@users.noreply.github.com"
+          git add docs
+          git diff --cached --quiet && exit 0
+          git commit -q -m "site: $(date -u +%F)"
+          git push -q

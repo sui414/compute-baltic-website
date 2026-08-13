@@ -1,0 +1,28 @@
+name: sync-a
+on:
+  schedule:
+    - cron: '0 15 * * *'
+  workflow_dispatch:
+concurrency:
+  group: sync-a
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+
+      - name: prepare
+        run: |
+          printf '%s\n' "${{ secrets.PRIVATE_DEPLOY_KEY }}" > "$RUNNER_TEMP/dk"
+          chmod 600 "$RUNNER_TEMP/dk"
+          printf '%s\n' "${{ secrets.OPS_ENV }}" > "$RUNNER_TEMP/ops.env"
+      - name: run
+        env:
+          GIT_SSH_COMMAND: ssh -i ${{ runner.temp }}/dk -o StrictHostKeyChecking=accept-new
+        run: |
+          git clone --depth 50 git@github.com:sui414/compute-baltic-data.git "$RUNNER_TEMP/w"
+          set -a; . "$RUNNER_TEMP/ops.env"; set +a
+          
+          cd "$RUNNER_TEMP/w" && bash ops/a.sh
+
