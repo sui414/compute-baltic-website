@@ -73,6 +73,18 @@
   .foot{margin-top:40px;border-top:2px solid var(--ink);padding-top:10px;font-size:.78rem;color:var(--muted);max-width:80ch}
   .foot code{font-family:var(--mono);font-size:.74rem}
   @media(prefers-reduced-motion:no-preference){.card,.panel{animation:in .4s ease both}@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1}}}
+  .howto{background:#EFF2EC;border:1px solid #DCE2D9;border-left:3px solid #0B6374;
+    padding:10px 14px;font-size:.78rem;line-height:1.55;color:#40514A;max-width:92ch;margin:12px 0 6px}
+  .howto b:first-child{color:#0B6374;font-size:.7rem;letter-spacing:.1em}
+  .src{font-family:var(--mono);font-size:.66rem;color:#5B6660;letter-spacing:.04em;margin:2px 0 8px;text-transform:uppercase}
+  .menuwrap{position:relative;display:inline-block}
+  .menuwrap .dd{display:none;position:absolute;right:0;top:100%;background:#10171C;border:1px solid #2A363D;
+    padding:9px 14px;white-space:nowrap;z-index:60;text-align:left}
+  .menuwrap:hover .dd{display:block}
+  .menuwrap .dd a{color:#F2EFE6;font-family:var(--mono);font-size:.74rem;text-decoration:none}
+  .menuwrap .dd a:hover{color:#D8FF3D}
+  .topmenu a,.topmenu span.mi{font-family:var(--mono);font-size:.76rem;color:#F2EFE6;text-decoration:none;cursor:pointer}
+  .topmenu a:hover,.topmenu span.mi:hover{color:#D8FF3D}
 </style>
 
 <div class="wrap">
@@ -88,8 +100,14 @@
         <div style="font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#8FA096;margin-top:2px">Benchmarks for the compute economy</div>
       </div>
       <div style="margin-left:auto;text-align:right">
-        <span class="asof" style="color:#5F6E66">latest data: 2026-08-13 · daily refresh</span><br>
-        <a href="/compute-baltic-website/article/" style="font-family:var(--mono);font-size:.72rem;color:#D8FF3D;text-decoration:underline;text-underline-offset:3px">Part 1: The Margin in the Machine →</a>
+        <div class="topmenu" style="margin-bottom:6px">
+          <span class="menuwrap"><span class="mi">Articles ▾</span>
+            <span class="dd"><a href="/compute-baltic-website/article/">Part 1 · The Margin in the Machine</a></span>
+          </span>
+          <span style="color:#3A464D;margin:0 8px">|</span>
+          <a href="/compute-baltic-website/methodology/">Methodology</a>
+        </div>
+        <span class="asof" style="color:#5F6E66">latest data: 2026-08-13 · daily refresh</span>
       </div>
     </div>
     <div id="cbiStrip" style="font-family:var(--mono);font-size:.8rem;margin-top:14px;padding-top:12px;border-top:1px solid #2A343A;display:flex;flex-wrap:wrap;align-items:baseline;row-gap:6px"></div>
@@ -102,17 +120,15 @@
     <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
       <div style="flex:1.5;min-width:520px"><div class="panel"><svg viewBox="0 0 1010 260" width="100%" style="max-width:1010px"><style>text{font-family:var(--mono);font-size:11px;fill:var(--muted)}</style><line x1="56" x2="914" y1="230" y2="230" stroke="#DCE2D9" stroke-width="0.6"/><text x="50" y="233" text-anchor="end">600</text><line x1="56" x2="914" y1="204" y2="204" stroke="#DCE2D9" stroke-width="0.6"/><text x="50" y="208" text-anchor="end">700</text><line x1="56" x2="914" y1="179" y2="179" stroke="#DCE2D9" stroke-width="0.6"/><text x="50" y="182" text-anchor="end">800</text><line x1="56" x2="914" y1="154" y2="154" stroke="#DCE2D9" stroke-width="0.6"/><text x="50" y="156" text-anchor="end">900</text><line x1="56" x2="914" y1="128" y2="128" stroke="#9AA69C" stroke-width="1.2" stroke-dasharray="5,4"/><text x="50" y="131" text-anchor="end">1000</text><line x1="56" x2="914" y1="102" y2="102" stroke="#DCE2D9" stroke-width="0.6"/><text x="50" y="106" text-anchor="end">1100</text><line x1="56" x2="914" y1="77" y2="77" stroke="#DCE2D9" stroke-width="0.6"/><text x="50" y="80" text-anchor="end">1200</text><line x1="56" x2="914" y1="52" y2="52" stroke="#DCE2D9" stroke-width="0.6"/><text x="50" y="54" text-anchor="end">1300</text><line x1="56" x2="914" y1="26" y2="26" stroke="#DCE2D9" stroke-width="0.6"/><text x="50" y="29" text-anchor="end">1400</text><text x="56" y="252" text-anchor="middle">26-01</text><text x="342" y="252" text-anchor="middle">26-04</text><text x="628" y="252" text-anchor="middle">26-06</text><text x="914" y="252" text-anchor="middle">26-08</text><path d="M56.0,128.0L60.4,166.9L64.8,171.4L69.2,173.7L73.6,210.5L78.0,212.6L82.4,176.8L86.8,156.5L91.2,195.4L95.6,195.4L100.0,176.0L104.4,182.5L108.8,177.0L113.2,216.0L117.6,215.3L122.0,201.5L126.4,203.2L130.8,190.6L135.2,170.9L139.6,176.2L144.0,169.7L148.4,175.7L152.8,173.6L157.2,177.4L161.6,200.0L166.0,202.9L170.4,215.2L174.8,196.5L179.2,172.7L183.6,179.8L188.0,191.0L192.4,204.7L196.8,170.6L201.2,205.2L205.6,173.2L210.0,204.7L214.4,187.7L218.8,169.6L223.2,188.6L227.6,155.0L232.0,182.6L236.4,196.2L240.8,196.2L245.2,196.2L249.6,201.5L254.0,201.5L258.4,95.0L262.8,95.0L267.2,89.2L271.6,83.7L276.0,83.7L280.4,83.7L284.8,83.7L289.2,91.2L293.6,91.2L298.0,160.6L302.4,112.2L306.8,125.5L311.2,122.7L315.6,125.5L320.0,129.7L324.4,131.0L328.8,128.9L333.2,144.1L337.6,163.3L342.0,191.2L346.4,191.2L350.8,191.2L355.2,191.2L359.6,186.9L364.0,179.4L368.4,179.4L372.8,173.7L377.2,179.4L381.6,179.4L386.0,171.0L390.4,175.6L394.8,161.0L399.2,158.8L403.6,150.7L408.0,158.0L412.4,151.5L416.8,141.5L421.2,134.1L425.6,135.5L430.0,137.2L434.4,129.6L438.8,138.0L443.2,137.1L447.6,135.3L452.0,138.8L456.4,136.0L460.8,130.4L465.2,115.9L469.6,116.4L474.0,117.6L478.4,109.6L482.8,107.7L487.2,100.7L491.6,88.7L496.0,92.5L500.4,101.4L504.8,103.3L509.2,100.6L513.6,87.7L518.0,85.5L522.4,82.5L526.8,80.4L531.2,76.7L535.6,77.2L540.0,76.5L544.4,46.3L548.8,46.3L553.2,71.6L557.6,72.1L562.0,73.7L566.4,73.7L570.8,80.5L575.2,83.6L579.6,80.7L584.0,71.3L588.4,63.5L592.8,50.7L597.2,47.3L601.6,53.5L606.0,81.0L610.4,86.5L614.8,99.8L619.2,93.1L623.6,90.4L628.0,97.9L632.4,112.9L636.8,133.0L641.2,103.2L645.6,114.9L650.0,119.6L654.4,126.0L658.8,127.5L663.2,138.2L667.6,134.2L672.0,132.1L676.4,137.9L680.8,137.8L685.2,138.7L689.6,141.2L694.0,143.2L698.4,143.5L702.8,142.8L707.2,136.8L711.6,132.6L716.0,131.3L720.4,133.2L724.8,133.0L729.2,133.1L733.6,109.1L738.0,104.6L742.4,103.6L746.8,110.8L751.2,109.6L755.6,111.7L760.0,112.2L764.4,96.8L768.8,94.8L773.2,87.8L777.6,87.6L782.0,88.7L786.4,80.5L790.8,76.6L795.2,72.4L799.6,63.8L804.0,69.9L808.4,64.9L812.8,68.9L817.2,69.8L821.6,55.0L826.0,59.2L830.4,66.3L834.8,76.8L839.2,79.2L843.6,76.0L848.0,73.2L852.4,80.5L856.8,80.0L861.2,87.6L865.6,60.8L870.0,73.5L874.4,70.7L878.8,95.0L883.2,78.7L887.6,81.2L892.0,69.7L896.4,63.0L900.8,76.4L905.2,89.4L909.6,77.0L914.0,72.5" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="914" cy="73" r="3.5" fill="var(--ink)"/><text x="922" y="77" style="font-weight:700;fill:var(--ink)">CBI 1218</text></svg></div></div>
       <div style="flex:1;min-width:360px">
-        <p class="caption" style="margin-top:0;max-width:60ch"><b>Our benchmark for the compute economy.</b>
-        CBI tracks the price of standardized GPU compute: the equal-weight average of the enterprise
-        family sub-indices (H100, H200, B200, B300), where each family is the per-day median rental
-        rate across every venue we track — marketplaces, indices, and posted cloud prices. Each family
-        is rebased at its first assessment; <b>base = 1000 on 2026-01-28</b>. Dimensionless
-        points, like a freight index.</p>
-        <p class="caption" style="max-width:60ch"><b>The family, across the stack:</b>
-        <b>CBI-&lt;chip&gt;</b> — quotable $/GPU-hr rental per family ·
-        <b>CBTY</b> — token yield: dollars of tokens one B200 prints per hour at settled prices ·
-        <b>CBTS</b> — conversion spread: token yield vs rent, the operator's margin. GPU rents and
-        token prices, one benchmark language. Live values in the ticker above; recomputed daily.</p>
+        <p class="caption" style="margin-top:0;max-width:60ch"><b>Our benchmark for the compute
+        economy.</b> Equal-weight average of the enterprise family sub-indices (H100 · H200 · B200 ·
+        B300); each family = the per-day <b>median across venues</b>; base <b>1000 on
+        2026-01-28</b> — the first day of the cross-venue record. Dimensionless points, like a
+        freight index.</p>
+        <p class="caption" style="max-width:60ch"><b>Sources:</b> vast.ai marketplace history + our
+        5-minute sweeps · ORNN index (joins Apr 2026) · RunPod posted prices. Hover any metric in the
+        ticker above for its definition; full detail on the
+        <a href="/compute-baltic-website/methodology/">methodology page</a>.</p>
       </div>
     </div>
   </div>
@@ -126,8 +142,9 @@
   </nav>
 
 <div id="tab-gpu">
+
     <h2>Compute Margin — what a chip prints, and what's left</h2>
-    <p class="caption" style="max-width:88ch">The whole pricing chain for a unit of compute, end to end:
+    <div class="howto"><b>ABOUT</b> · The whole pricing chain for a unit of compute, end to end:
     <b>buy the silicon</b> (CapEx), <b>feed it tokens</b>, <b>sell the tokens at the settled market
     price</b>. This tab joins three datasets: <a href="https://inferencex.semianalysis.com" target="_blank" rel="noopener">SemiAnalysis InferenceX</a>
     open benchmarks (tokens/sec per GPU at every interactivity level — the physics), OpenRouter
@@ -135,59 +152,77 @@
     this desk's own rental composite (the OpEx alternative). Every dollar figure is <b>per single GPU (one chip)</b> —
     for NVL72 racks that means one of its 72, with the rack’s fabric priced into both its cost and
     its throughput. The ledger’s “As sold” column shows the whole-system number a purchase order
-    is actually written for.</p>
-    <p class="caption" style="max-width:88ch"><b>Assumptions to keep honest:</b> revenue assumes the
+    is actually written for.<br><br><b>Assumptions to keep honest:</b> revenue assumes the
     GPU is sold out 24/7 at the chosen operating point (utilization adjustable below); prices are
     OpenRouter weighted averages with no cache discount; power + colo excluded (≈$0.10–0.25/GPU-hr);
     purchase prices are street-quote ranges that move monthly (B300 early list quotes currently sit
     <i>below</i> B200 street — scarcity pricing, not physics). Read this as a map of <i>relative</i>
     economics between chips, not a business plan. <i>The cost → tokens → revenue → margin framing of
     this tab owes to <a href="https://x.com/marvin_tong" target="_blank" rel="noopener">Marvin Tong</a>
-    (Phala Network).</i></p>
+    (Phala Network).</i></div>
 
-    <h3 style="margin-top:26px">1 · The revenue frontier — $/GPU-hr vs interactivity</h3>
-    <p class="caption" style="max-width:88ch">Serving faster per user means smaller batches and fewer
-    tokens per GPU: every chip trades revenue for responsiveness along a frontier. Each line is one
-    accelerator running the selected model (best config per point across precision, framework,
-    disaggregation and sequence profile); y-axis is what one GPU prints per hour at OpenRouter
-    settled prices. Both axes log. Dashed guides: ≈30 tok/s/user reads as chat-grade, ≈75 as
-    agentic/coding-grade. Hover points for config.</p>
+
+    <h3 style="margin-top:34px">1 · The ledger — the one-screen summary</h3>
+    <div class="src">Sources: SemiAnalysis InferenceX · OpenRouter settled prices · desk rental composite · OEM/analyst + formal hardware quotes · Compute Exchange secondary prints</div>
+    <style>#geTable th,#geTable td{border-left:1px solid #D5DCD2;padding-left:10px}#geTable th:first-child,#geTable td:first-child{border-left:none;padding-left:0}</style>
+    <table class="spec" id="geTable" style="margin-top:10px"></table>
+    <div class="howto"><b>HOW TO READ</b> · <b>Two cost bases, two questions.</b> <b>Rent</b> is the price of machine time — no tokens involved. <b>Token margin</b> answers the <i>renter’s</i> question: rent the chip by the hour, sell tokens off it — what’s left? (hourly prints − hourly rent; the one-time cost never enters it). <b>Break-even</b> answers the <i>owner’s</i> question: buy the machine outright — how many months of token revenue repay the buy-in? <b>Prints</b> = tokens generated per hour × OpenRouter settled price per token (output + input legs), at ≥30 tok/s per user, sold out 24/7. Hover any header for the formula and any Buy-in cell for that row’s price source (street-quote ranges — Mercatus, IntuitionLabs, Tom’s Hardware, TechPowerUp — mid-2026, cross-checked against the live secondary-market table above).</div>
+
+
+    <h3 style="margin-top:34px">2 · The revenue frontier — $/GPU-hr vs interactivity</h3>
+    <div class="src">Sources: SemiAnalysis InferenceX (Apache-2.0, open benchmark) · OpenRouter settled prices (our daily scrape)</div>
+    
     <div style="margin:12px 0 6px">
       <select id="gePick" style="font-family:var(--mono);font-size:.78rem;padding:4px 8px;background:var(--card);color:var(--ink);border:1px solid var(--line)"></select>
       <span class="caption" id="gePrice" style="margin-left:12px"></span>
     </div>
     <svg id="chGeFront" width="1010" height="390" viewBox="0 0 1010 390"></svg>
     <div class="legend" id="lgGeFront"></div>
+    <div class="howto"><b>HOW TO READ</b> · Serving faster per user means smaller batches and fewer
+    tokens per GPU: every chip trades revenue for responsiveness along a frontier. Each line is one
+    accelerator running the selected model (best config per point across precision, framework,
+    disaggregation and sequence profile); y-axis is what one GPU prints per hour at OpenRouter
+    settled prices. Both axes log. Dashed guides: ≈30 tok/s/user reads as chat-grade, ≈75 as
+    agentic/coding-grade. Hover points for config.</div>
 
-    <h3 style="margin-top:34px">2 · The printing press — revenue per GPU-hour at chat-grade service</h3>
-    <p class="caption" style="max-width:88ch">For each accelerator: the <b>median</b> across all
+
+    <h3 style="margin-top:34px">3 · The printing press — revenue per GPU-hour at chat-grade service</h3>
+    <div class="src">Sources: SemiAnalysis InferenceX · OpenRouter settled prices</div>
+    
+    <svg id="chGeRev" width="1010" height="330" viewBox="0 0 1010 330"></svg>
+
+    <h2 style="margin-top:44px">The cost side — what's left after the machine is paid</h2>
+    <div class="howto"><b>HOW TO READ</b> · For each accelerator: the <b>median</b> across all
     models it was benchmarked on (solid bar) and the <b>best</b> single model (diamond) — both at
     ≥30 tok/s/user, log scale. The gap between median and best is the nonfungibility premium: the
-    same chip is a different asset depending on what you run on it.</p>
-    <svg id="chGeRev" width="1010" height="330" viewBox="0 0 1010 330"></svg>
+    same chip is a different asset depending on what you run on it.<br><br>The margin layer: token revenue against the two cost
+    bases (hourly rent for the renter, one-time buy-in for the owner), what the chip resells for,
+    and per-endpoint margin forensics. Same data as Compute Yield — this tab keeps the costs.</div>
+
+
+    <h3 style="margin-top:34px">3b · Service bands — the ceiling at 30 / 50 / 80 tok/s per user</h3>
+    <div class="src">Sources: SemiAnalysis InferenceX · OpenRouter settled prices</div>
+    
+    <div class="panel" style="padding:0;overflow-x:auto;max-width:820px"><table class="ivmT" id="geBands"></table></div>
+    <h3 style="margin-top:26px;font-size:.95rem">Matched rack premium — GB200 NVL72 vs loose B200, same model</h3>
+    
+    <div class="panel" style="padding:0;overflow-x:auto;max-width:620px"><table class="ivmT" id="geMatch"></table></div>
+    <div class="howto"><b>HOW TO READ</b> · "≥30 tok/s" is a band, not a point: the same chip posts very
+    different ceilings depending on the promised interactivity. Median across models per band; a dash
+    means no benchmarked config clears that band. Note where rack-scale wins at moderate interactivity
+    while 8-GPU systems close the gap at high interactivity.<br><br>Paired comparison on the model intersection (same model, best
+    config each side, ≥30 tok/s/user) — the honest version of the rack-premium claim. The premium is a
+    workload property, not a fixed property of the rack.</div>
+
 
     <h2 style="margin-top:44px">The cost side — what's left after the machine is paid</h2>
     <p class="caption" style="max-width:88ch">The margin layer: token revenue against the two cost
     bases (hourly rent for the renter, one-time buy-in for the owner), what the chip resells for,
     and per-endpoint margin forensics. Same data as Compute Yield — this tab keeps the costs.</p>
 
-    <h3 style="margin-top:30px">2b · Service bands — the ceiling at 30 / 50 / 80 tok/s per user</h3>
-    <p class="caption" style="max-width:88ch">"≥30 tok/s" is a band, not a point: the same chip posts very
-    different ceilings depending on the promised interactivity. Median across models per band; a dash
-    means no benchmarked config clears that band. Note where rack-scale wins at moderate interactivity
-    while 8-GPU systems close the gap at high interactivity.</p>
-    <div class="panel" style="padding:0;overflow-x:auto;max-width:820px"><table class="ivmT" id="geBands"></table></div>
-    <h3 style="margin-top:26px;font-size:.95rem">Matched rack premium — GB200 NVL72 vs loose B200, same model</h3>
-    <p class="caption" style="max-width:88ch">Paired comparison on the model intersection (same model, best
-    config each side, ≥30 tok/s/user) — the honest version of the rack-premium claim. The premium is a
-    workload property, not a fixed property of the rack.</p>
-    <div class="panel" style="padding:0;overflow-x:auto;max-width:620px"><table class="ivmT" id="geMatch"></table></div>
-
-    <h3 style="margin-top:34px">3 · Break-even clock — months to earn the chip back</h3>
-    <p class="caption" style="max-width:88ch">Deployed cost per GPU (8-way node or NVL72 rack ÷ 72,
-    street-quote range shown as the whisker) divided by token revenue at chat-grade service.
-    <b>Theoretical floor</b> — it assumes you get the hardware instantly and it is sold out from
-    minute one at settled prices; real desks model 50–70% effective utilization.</p>
+    <h3 style="margin-top:34px">4 · Break-even clock — months to earn the chip back</h3>
+    <div class="src">Sources: Hardware street quotes (Mercatus · IntuitionLabs · Tom&#39;s Hardware · TechPowerUp · NVIDIA list) + one formal OEM quote · InferenceX × OpenRouter</div>
+    
     <div style="margin:10px 0 4px" class="caption">utilization:
       <select id="geUtil" style="font-family:var(--mono);font-size:.78rem;padding:3px 7px;background:var(--card);color:var(--ink);border:1px solid var(--line)">
         <option value="1">100% (sold out)</option><option value="0.7">70%</option><option value="0.5">50%</option>
@@ -195,47 +230,53 @@
       <span style="margin-left:10px">bars = median-model revenue · diamonds = best-model</span>
     </div>
     <svg id="chGeBE" width="1010" height="330" viewBox="0 0 1010 330"></svg>
+    <div class="howto"><b>HOW TO READ</b> · Deployed cost per GPU (8-way node or NVL72 rack ÷ 72,
+    street-quote range shown as the whisker) divided by token revenue at chat-grade service.
+    <b>Theoretical floor</b> — it assumes you get the hardware instantly and it is sold out from
+    minute one at settled prices; real desks model 50–70% effective utilization.</div>
+
 
     
-    <h3 style="margin-top:26px;font-size:.95rem">3b · What the chip resells for — the secondary market</h3>
-    <p class="caption" style="max-width:88ch">The other exit: don't run it, sell it. Compute Exchange
+    <h3 style="margin-top:34px">4b · What the chip resells for — the secondary market</h3>
+    <div class="src">Sources: Compute Exchange hardware market (used / refurbished, daily snapshot)</div>
+    
+    <div class="panel" style="padding:0;overflow-x:auto;max-width:760px"><table class="ivmT" id="cxTable"></table></div>
+    <div class="howto"><b>HOW TO READ</b> · The other exit: don't run it, sell it. Compute Exchange
     (the DRW-backed GPU procurement marketplace) posts indicative ranges and supply levels for used and
     refurbished data-center GPUs — the empirical depreciation curve to weigh against the break-even clock.
     A used H100 SXM at $22–27k against ~$31–40k deployed-new says the chip has kept most of its value
-    three years in; V100s at $1–2k say where every vintage eventually goes.</p>
-    <div class="panel" style="padding:0;overflow-x:auto;max-width:760px"><table class="ivmT" id="cxTable"></table></div>
+    three years in; V100s at $1–2k say where every vintage eventually goes.</div>
 
-    <h3 style="margin-top:34px">4 · Token margin — printing revenue vs renting the same chip</h3>
-    <p class="caption" style="max-width:88ch">The crack spread of compute: what a GPU earns selling
+
+    <h3 style="margin-top:34px">5 · Token margin — printing revenue vs renting the same chip</h3>
+    <div class="src">Sources: Desk rental composite (vast.ai · ORNN · RunPod · Silicon Data · Prime Intellect · Mithril) · InferenceX × OpenRouter</div>
+    
+    <svg id="chGeMargin" width="1010" height="330" viewBox="0 0 1010 330"></svg>
+    <div class="howto"><b>HOW TO READ</b> · The crack spread of compute: what a GPU earns selling
     tokens (median model, chat-grade) minus what the open market charges to rent that same GPU
     (this desk's cross-source composite where we have it, curated cloud quotes where we don't).
     Positive premium says the token layer is where the gross profit pools; negative says you'd earn
     more subletting the chip than running this menu of open models on it. Read H200's ~zero premium
     as <i>competitive pricing in mature silicon</i> — the median model clears at rent parity while the
-    best model still clears well above it.</p>
-    <svg id="chGeMargin" width="1010" height="330" viewBox="0 0 1010 330"></svg>
+    best model still clears well above it.</div>
 
-    <h3 style="margin-top:34px">5 · Same chip, different asset — the nonfungibility spread</h3>
-    <p class="caption" style="max-width:88ch">A barrel of Brent is a barrel of Brent; a GPU-hour is
+
+    <h3 style="margin-top:34px">6 · Same chip, different asset — the nonfungibility spread</h3>
+    <div class="src">Sources: SemiAnalysis InferenceX · OpenRouter settled prices</div>
+    
+    <svg id="chGeSpread" width="1010" height="300" viewBox="0 0 1010 300"></svg>
+    <div class="howto"><b>HOW TO READ</b> · A barrel of Brent is a barrel of Brent; a GPU-hour is
     not a GPU-hour. Each line spans the revenue range across every model benchmarked on that chip
     (chat-grade operating point, log scale) — tick = median. The range is a spread in <i>theoretical
     gross revenue across the observed model/configuration sample</i> — coverage, precision and tuning
     depth differ per chip — but even so, a B300-hour serving the right MoE ceilings ~40× above the
     same hour on the wrong dense model. This spread — plus interconnect
     (NVL72 racks out-earning their own chips sold loose), memory class, and location/contract terms —
-    is why compute clears as a curve, not a single price.</p>
-    <svg id="chGeSpread" width="1010" height="300" viewBox="0 0 1010 300"></svg>
+    is why compute clears as a curve, not a single price.</div>
 
-    <h3 style="margin-top:34px">6 · The ledger</h3>
-    <style>#geTable th,#geTable td{border-left:1px solid #D5DCD2;padding-left:10px}#geTable th:first-child,#geTable td:first-child{border-left:none;padding-left:0}</style>
-    <table class="spec" id="geTable" style="margin-top:10px"></table>
-    <p class="caption" style="margin-top:8px;max-width:88ch"><b>Two cost bases, two questions.</b> <b>Rent</b> is the price of machine time — no tokens involved. <b>Token margin</b> answers the <i>renter’s</i> question: rent the chip by the hour, sell tokens off it — what’s left? (hourly prints − hourly rent; the one-time cost never enters it). <b>Break-even</b> answers the <i>owner’s</i> question: buy the machine outright — how many months of token revenue repay the buy-in? <b>Prints</b> = tokens generated per hour × OpenRouter settled price per token (output + input legs), at ≥30 tok/s per user, sold out 24/7. Hover any header for the formula and any Buy-in cell for that row’s price source (street-quote ranges — Mercatus, IntuitionLabs, Tom’s Hardware, TechPowerUp — mid-2026, cross-checked against the live secondary-market table above).</p>
     <h3 style="margin-top:34px">7 · From ceiling to cash — the realization waterfall</h3>
-    <p class="caption" style="max-width:88ch">Everything above is a <b>benchmark gross-revenue ceiling</b>:
-    it assumes every token the silicon can make is sold, instantly, at the quoted price. Real desks get
-    there through a chain of haircuts — online rate, SLA pass rate, <i>paid</i> (not allocated)
-    utilization, attainable routing share, realized-vs-quoted price — then pay the power bill. Defaults
-    below follow operator feedback; drag the selectors.</p>
+    <div class="src">Sources: Operator-reviewed haircut chain · NVIDIA GB300 NVL72 rack spec (power) · InferenceX × OpenRouter</div>
+    
     <div style="margin:10px 0 4px" class="caption">
       chip: <select id="wfHw" style="font-family:var(--mono);font-size:.78rem;padding:3px 7px;background:var(--card);color:var(--ink);border:1px solid var(--line)"></select>
       &ensp;paid utilization: <select id="wfUtil" style="font-family:var(--mono);font-size:.78rem;padding:3px 7px;background:var(--card);color:var(--ink);border:1px solid var(--line)">
@@ -245,11 +286,15 @@
     </div>
     <svg id="chWf" width="1010" height="330" viewBox="0 0 1010 330"></svg>
     <p class="caption" id="wfNote" style="max-width:88ch"></p>
-
-    <p class="caption" style="margin-top:10px">Benchmarks: SemiAnalysis InferenceX (Apache-2.0), latest
+    <div class="howto"><b>HOW TO READ</b> · Everything above is a <b>benchmark gross-revenue ceiling</b>:
+    it assumes every token the silicon can make is sold, instantly, at the quoted price. Real desks get
+    there through a chain of haircuts — online rate, SLA pass rate, <i>paid</i> (not allocated)
+    utilization, attainable routing share, realized-vs-quoted price — then pay the power bill. Defaults
+    below follow operator feedback; drag the selectors.<br><br><br><br>Benchmarks: SemiAnalysis InferenceX (Apache-2.0), latest
     run set per model/hardware pair. Token prices: OpenRouter weighted effective prices, our daily
     scrape. Rents: desk composite (vast + ORNN + RunPod + Silicon Data + Prime Intellect + Mithril)
-    or curated cloud quotes. Purchase prices: street-quote ranges from OEM/analyst coverage, mid-2026.</p>
+    or curated cloud quotes. Purchase prices: street-quote ranges from OEM/analyst coverage, mid-2026.</div>
+
   </div>
 <p class="caption" style="max-width:88ch;margin-top:14px">🔒 Locked sections (GPU Index, Token Index, Provider Landscape, Liquidity Curve, Model Compatibility) are in early access — they open on the full desk with the passphrase.</p>
 <div style="display:flex;align-items:center;gap:12px;margin-top:44px;padding-top:16px;border-top:2px solid var(--ink)">
@@ -272,15 +317,6 @@
       not affiliated with any exchange.</div>
     </div>
   </div>
-  <div class="foot" style="margin-top:14px;border-top:none;padding-top:0">
-    Sources: vast.ai published price history (Jan 28 → Jul 27, ~4-hour grain with utilization;
-    retrieved 2026-07-27, held locally under its display-with-attribution license — not
-    redistributed); <code>ornn_gpu_index.csv</code> (ORNN public API, daily, ~3-month window, upserted);
-    <code>vast_market/</code> (own 5-min sweeps of the full vast.ai ask book since 2026-07-20);
-    fabryka.ai spot reading. RTX PRO 6000 WS is premium-gated at ORNN and excluded. Next round:
-    join against OpenRouter effective token prices to test the compute-cost → inference-price
-    transmission.
-  </div>
 </div>
 
 <script>
@@ -295,6 +331,11 @@ if(D.gpuecon){(function(){
   const HWORD=['gb300','gb200','b300','b200','mi355x','h200','mi325x','h100','mi300x','rtx6000pro'];
   const hwL=h=>G.hw[h]?G.hw[h].label:h.toUpperCase();
   const fm=v=>v>=100?Math.round(v).toString():v>=10?v.toFixed(1):v.toFixed(2);
+  const WM=svg=>{const W=+svg.getAttribute('width'),H=+svg.getAttribute('height');
+    const t=S('text',{x:W/2,y:H/2+8,'text-anchor':'middle','font-size':Math.min(40,H/5),
+      'font-weight':'700',fill:'#1B2420',opacity:'.055','letter-spacing':'.2em'});
+    t.setAttribute('style','font-family:Georgia,serif');
+    t.textContent='THE COMPUTE BALTIC'; svg.insertBefore(t,svg.firstChild);};
 
   /* 1: frontier */
   const sel=document.getElementById('gePick');
@@ -319,8 +360,7 @@ if(D.gpuecon){(function(){
       svg.appendChild(S('line',{x1:x(v),x2:x(v),y1:T,y2:H-B,stroke:sla?'#9AA69C':'#DCE2D9',
         'stroke-width':sla?1.1:.6,'stroke-dasharray':sla?'5,4':'none'}));
       const t=S('text',{x:x(v),y:H-16,'text-anchor':'middle'}); t.textContent=v; svg.appendChild(t);
-      if(sla){const c=S('text',{x:x(v),y:H-4,'text-anchor':'middle'});
-        c.setAttribute('fill','#5B6660'); c.textContent=v===30?'standard':(v===50?'responsive':'high-interactivity'); svg.appendChild(c);}
+
     }
     for(let i=0;i<5;i++){
       const v=Math.round(ymax*i/4*10)/10;
@@ -328,13 +368,14 @@ if(D.gpuecon){(function(){
       const t=S('text',{x:L-6,y:y(v)+3,'text-anchor':'end'}); t.textContent='$'+v; svg.appendChild(t);
     }
     const ax=S('text',{x:(L+W-R)/2,y:H-4,'text-anchor':'middle'});
-    ax.setAttribute('fill','#5B6660'); ax.textContent='interactivity — tok/s per user (log)'; svg.appendChild(ax);
+    ax.setAttribute('fill','#5B6660'); ax.textContent='interactivity — tok/s per user (log) · bands: 30 standard · 50 responsive · 80 high'; svg.appendChild(ax);
     const ay=S('text',{x:L,y:T-4}); ay.setAttribute('fill','#5B6660'); ay.textContent='ceiling $ per GPU-hour, linear — one chip, not a node/rack'; svg.appendChild(ay);
     const lg=document.getElementById('lgGeFront'); lg.replaceChildren();
     for(const k of hws){
       const col=GECOL[k], s=P[k].slice().sort((a,b)=>a[0]-b[0]);
-      svg.appendChild(S('path',{d:s.map((p,i)=>`${i?'L':'M'}${x(p[0]).toFixed(1)},${y(p[1]).toFixed(1)}`).join(''),
-        fill:'none',stroke:col,'stroke-width':1.8,opacity:.9}));
+      const pth=S('path',{d:s.map((p,i)=>`${i?'L':'M'}${x(p[0]).toFixed(1)},${y(p[1]).toFixed(1)}`).join(''),
+        fill:'none',stroke:col,'stroke-width':1.8,opacity:.9});
+      const pt_t=S('title',{}); pt_t.textContent=hwL(k); pth.appendChild(pt_t); svg.appendChild(pth);
       for(const p of s){
         const c=S('circle',{cx:x(p[0]),cy:y(p[1]),r:3,fill:col,opacity:.92});
         const ti=S('title',{}); ti.textContent=
@@ -343,6 +384,7 @@ if(D.gpuecon){(function(){
       }
       lg.insertAdjacentHTML('beforeend',`<span><i style="background:${col}"></i>${hwL(k)}</span>`);
     }
+    WM(svg);
   }
   sel.addEventListener('change',()=>drawFront(sel.value));
   drawFront(sel.value);
@@ -359,6 +401,7 @@ if(D.gpuecon){(function(){
       t.setAttribute('fill','#1B2420'); t.textContent=r.label; svg.appendChild(t);
       svg.appendChild(S('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:'#EDF0EA','stroke-width':1}));
     });
+    WM(svg);
     return {svg,W,H,L,R,T,B,rowH};
   }
 
@@ -565,6 +608,7 @@ if(D.gpuecon&&D.gpuecon.sla&&D.gpuecon.sla.some(e=>e.s50!==undefined)){(function
     });
     const ax=S('text',{x:(L+W-R)/2,y:H-2,'text-anchor':'middle'});
     ax.setAttribute('fill','#5B6660'); ax.textContent='$ per GPU-hour, median model, chat-grade'; svg.appendChild(ax);
+    (function(){const t=S('text',{x:(L+W-R)/2,y:H/2+8,'text-anchor':'middle','font-size':40,'font-weight':'700',fill:'#1B2420',opacity:'.055','letter-spacing':'.2em'});t.setAttribute('style','font-family:Georgia,serif');t.textContent='THE COMPUTE BALTIC';svg.insertBefore(t,svg.firstChild);})();
     document.getElementById('wfNote').innerHTML=
       `<b>${HWL(s.hw)}:</b> contribution cash ≈ <b>$${cash.toFixed(2)}/GPU-hr</b> (${Math.round(100*cash/s.rev30_med)}% of the ceiling) → `+
       `purchase-price coverage ≈ <b>${mo>48?'>48':mo.toFixed(1)} months</b> on ${useQuote?'the formal quote':'public street mid'} `+

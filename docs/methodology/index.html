@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology — The Compute Baltic</title>
+<style>
+ body{margin:0;background:#F7F5F0;color:#1B2420;font-family:Georgia,serif;line-height:1.6}
+ .wrap{max-width:860px;margin:0 auto;padding:0 22px 70px}
+ header{background:#10171C;color:#F2EFE6;padding:20px 24px;margin:0 -22px 30px}
+ header a{color:#D8FF3D;font-family:ui-monospace,Menlo,monospace;font-size:.76rem;text-decoration:none}
+ h1{font-size:1.9rem;margin:.2em 0}
+ h2{font-size:1.25rem;margin:1.8em 0 .4em;border-bottom:1px solid #DCE2D9;padding-bottom:6px}
+ p,li{font-size:.95rem;color:#40514A;max-width:78ch}
+ li{margin:.35em 0}
+ code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:.85em}
+ b{color:#1B2420}
+</style></head><body>
+<header><div style="display:flex;align-items:center;gap:14px">
+ <svg width="40" height="40" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" fill="none" stroke="#F2EFE6" stroke-width="2.5"/><path d="M8,54 h11 v-8 h11 v-8 h11 v-8 h11 v-8 h4" fill="none" stroke="#D8FF3D" stroke-width="3"/><text x="12" y="26" font-family="Georgia,serif" font-weight="700" font-size="19" fill="#F2EFE6">CB</text></svg>
+ <div><div style="font-family:Georgia,serif;font-weight:700;font-size:1.1rem">THE COMPUTE BALTIC</div>
+ <a href="/compute-baltic-website/">← back to the desk</a></div>
+</div></header>
+<div class="wrap">
+<h1>Methodology</h1>
+<p>How the numbers on this desk are collected, computed, and refreshed. Independent research;
+not affiliated with any exchange. Contact: <a href="mailto:danning@panteracapital.com">danning@panteracapital.com</a> · <a href="https://x.com/sui414">@sui414</a>.</p>
+
+<h2>The index family</h2>
+<ul>
+<li><b>CBI — Baltic Composite Index.</b> One number for the price of standardized GPU compute.
+Equal-weight average of the enterprise family sub-indices (H100, H200, B200, B300); each family is
+the per-day <b>median across venues</b>; each family is rebased at its first assessment.
+<b>Base = 1000 on 2026-01-28</b> — the first day of the cross-venue record. Dimensionless points,
+like a freight index. Families join the average as they list (B300 from June 2026).</li>
+<li><b>CBI-&lt;chip&gt;</b> — the quotable dollar price: cross-venue median rental rate, USD per GPU-hour,
+on-demand, per family.</li>
+<li><b>CBTY — Token Yield.</b> Dollars of tokens one B200 prints per hour: benchmark throughput ×
+settled token prices; median model, ≥30 tok/s per user, sold-out basis (a gross-revenue ceiling).</li>
+<li><b>CBTS — Token Spread.</b> (Token yield − rental rate) ÷ token yield on the same chip — the
+operator&#39;s gross conversion margin.</li>
+</ul>
+
+<h2>Data sources</h2>
+<ul>
+<li><b>GPU rental rates:</b> vast.ai marketplace (our own 5-minute order-book sweeps; historical daily
+series from Jan 28, 2026), ORNN curated index (from Apr 2026), RunPod (posted + reserved term
+structure), Silicon Data headline values (display with attribution), Prime Intellect, Mithril.</li>
+<li><b>Posted list prices:</b> CoreWeave (instance-normalized), Nebius, Crusoe; AI principals —
+Fireworks, Together, Modal (per-second normalized), Baseten (per-minute normalized).</li>
+<li><b>Token prices &amp; usage:</b> OpenRouter — token-weighted effective prices (post-cache, measured
+across live traffic), per-model daily volumes, cache-hit rates; ORNN per-lab token indices.</li>
+<li><b>Inference physics:</b> SemiAnalysis InferenceX open benchmark (Apache-2.0) — tokens/sec per GPU
+(input/output split, normalized over the full prefill+decode pool) × interactivity, 11 open frontier
+models × 10 accelerators, with dated history since Sep 2025.</li>
+<li><b>Hardware prices:</b> public street-quote ranges (OEM/analyst coverage, evidence-labeled),
+one formal OEM quote (fully configured, labeled), and Compute Exchange secondary-market
+prints (used/refurbished, daily) for market-implied depreciation.</li>
+<li><b>Venues &amp; derivatives watch:</b> Itô Compute basket NAVs, Kalshi compute series, Architect,
+ComputeIndex, USD.ai financing metrics.</li>
+</ul>
+
+<h2>Collection cadence &amp; refresh schedule</h2>
+<ul>
+<li><b>Every 5 minutes</b> (within hourly windows): vast.ai order-book sweeps; OpenRouter performance
+percentiles.</li>
+<li><b>Daily 15:00 UTC:</b> full collection — every OpenRouter model × provider endpoint, ORNN, RunPod,
+Kalshi, InferenceX, venue stack, secondary hardware market.</li>
+<li><b>Daily 16:45 UTC:</b> the site republishes — indices recomputed, every chart regenerated. The
+banner&#39;s &quot;latest data&quot; date reflects the last completed cycle.</li>
+</ul>
+
+<h2>Model conventions</h2>
+<ul>
+<li><b>Ceiling vs realized.</b> &quot;Ceiling&quot; figures assume sold-out 24/7 at quoted prices. &quot;Realized&quot;
+figures apply the operating chain: 95% online × 97% SLA pass × 70% paid utilization (an assumption —
+no public source measures it) × 85% share-and-price realization − $0.25/GPU-hr power + colo.</li>
+<li><b>Cache handling.</b> Prices are measured token-weighted effective prices, so observed caching is
+already in the settle; no separate cache multiplier (it would double-count).</li>
+<li><b>Per-GPU basis.</b> All per-GPU figures divide by the full serving pool (including prefill GPUs);
+NVL72 rack systems divide by 72 on both cost and throughput.</li>
+<li><b>Evidence labels.</b> Street estimate ≠ formal quote ≠ landed cost; thin-market rack rents are
+indications, not executable quotes; depreciation is market-implied only where secondary prints exist.</li>
+</ul>
+
+<h2>Caveats</h2>
+<ul>
+<li>Benchmarks cover open models only; medians are menu statistics, not volume weights.</li>
+<li>Serving software improves monthly — the physics layer itself drifts upward.</li>
+<li>Street prices move; ranges are point-in-time and evidence-labeled.</li>
+</ul>
+<p style="font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:#5B6660;margin-top:40px">
+The Compute Baltic · Danning Sui · in collaboration with Tarun Chitra (Robot Ventures) and Marvin Tong (Phala Network)</p>
+</div></body></html>
