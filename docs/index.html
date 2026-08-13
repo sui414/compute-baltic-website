@@ -82,6 +82,10 @@
   .grp{margin:48px 0 8px;border:1px solid var(--ink);border-left:6px solid #0B6374;background:#EFF1EB;padding:13px 18px}
   .grp h2{margin:0;font-size:1.15rem}
   .grp p{margin:6px 0 0;font-size:.8rem;color:#40514A;max-width:92ch}
+  .wmtab{position:relative}
+  .wmtab::after{content:'THE COMPUTE BALTIC';position:absolute;inset:0;display:flex;align-items:center;
+    justify-content:center;font:700 2rem Georgia,serif;letter-spacing:.22em;color:rgba(27,36,32,.07);
+    pointer-events:none;white-space:nowrap;overflow:hidden}
   .tick{position:relative;cursor:help;white-space:nowrap}
   .tick:hover::after{content:attr(data-tip);position:absolute;left:0;top:140%;z-index:80;
     background:#10171C;color:#F2EFE6;border:1px solid #3A464D;padding:9px 11px;font-size:.68rem;
@@ -151,8 +155,10 @@
   </nav>
 
 <div id="tab-gpu">
-
-    <h2>Compute Margin — what a chip prints, and what's left</h2>
+    <div class="grp" style="margin-top:20px"><h2>Compute Margin — what a chip prints, and what&#39;s left</h2>
+    <p>The full pricing chain for a unit of compute: buy the silicon, feed it tokens, sell the tokens
+    at the settled market price. Physics from open benchmarks, prices from the routing layer, rents
+    from the cross-venue composite.</p></div>
     <div class="howto"><b>ABOUT</b> · The whole pricing chain for a unit of compute, end to end:
     <b>buy the silicon</b> (CapEx), <b>feed it tokens</b>, <b>sell the tokens at the settled market
     price</b>. This tab joins three datasets: <a href="https://inferencex.semianalysis.com" target="_blank" rel="noopener">SemiAnalysis InferenceX</a>
@@ -175,7 +181,7 @@
     <p class="sub1">What each accelerator costs, earns, and nets — the one-screen summary across every business model.</p>
     <div class="src">Sources: <a href="https://inferencex.semianalysis.com">SemiAnalysis InferenceX</a> · <a href="https://openrouter.ai">OpenRouter</a> settled prices · desk rental composite · OEM/analyst + formal hardware quotes · <a href="https://compute.exchange">Compute Exchange</a> secondary prints</div>
     <style>#geTable th,#geTable td{border-left:1px solid #D5DCD2;padding-left:10px}#geTable th:first-child,#geTable td:first-child{border-left:none;padding-left:0}</style>
-    <table class="spec" id="geTable" style="margin-top:10px"></table>
+    <div class="wmtab" style="overflow-x:auto"><table class="spec" id="geTable" style="margin-top:10px"></table></div>
     <div class="howto"><b>HOW TO READ</b> · <b>Two cost bases, two questions.</b> <b>Rent</b> is the price of machine time — no tokens involved. <b>Token margin</b> answers the <i>renter’s</i> question: rent the chip by the hour, sell tokens off it — what’s left? (hourly prints − hourly rent; the one-time cost never enters it). <b>Break-even</b> answers the <i>owner’s</i> question: buy the machine outright — how many months of token revenue repay the buy-in? <b>Prints</b> = tokens generated per hour × OpenRouter settled price per token (output + input legs), at ≥30 tok/s per user, sold out 24/7. Hover any header for the formula and any Buy-in cell for that row’s price source (street-quote ranges — Mercatus, IntuitionLabs, Tom’s Hardware, TechPowerUp — mid-2026, cross-checked against the live secondary-market table above).</div>
 
 
@@ -221,11 +227,11 @@
     <p class="sub1">Same silicon, different promise: what each interactivity guarantee costs in ceiling revenue.</p>
     <div class="src">Sources: <a href="https://inferencex.semianalysis.com">SemiAnalysis InferenceX</a> · <a href="https://openrouter.ai">OpenRouter</a> settled prices</div>
     
-    <div class="panel" style="padding:0;overflow-x:auto;max-width:820px"><table class="ivmT" id="geBands"></table></div>
+    <div class="panel wmtab" style="padding:0;overflow-x:auto;max-width:820px"><table class="ivmT" id="geBands"></table></div>
     <h3 style="margin-top:26px;font-size:.95rem">Matched Rack Premium · GB200 vs B200</h3>
     <p class="sub1">Same model on both sides — how much the NVLink rack multiplies per-GPU revenue.</p>
     
-    <div class="panel" style="padding:0;overflow-x:auto;max-width:620px"><table class="ivmT" id="geMatch"></table></div>
+    <div class="panel wmtab" style="padding:0;overflow-x:auto;max-width:620px"><table class="ivmT" id="geMatch"></table></div>
     <div class="howto"><b>HOW TO READ</b> · "≥30 tok/s" is a band, not a point: the same chip posts very
     different ceilings depending on the promised interactivity. Median across models per band; a dash
     means no benchmarked config clears that band. Note where rack-scale wins at moderate interactivity
@@ -261,7 +267,7 @@
     <p class="sub1">What the chip sells for used — the market&#39;s own depreciation curve.</p>
     <div class="src">Sources: <a href="https://compute.exchange">Compute Exchange</a> hardware market — used / refurbished, daily snapshot</div>
     
-    <div class="panel" style="padding:0;overflow-x:auto;max-width:760px"><table class="ivmT" id="cxTable"></table></div>
+    <div class="panel wmtab" style="padding:0;overflow-x:auto;max-width:760px"><table class="ivmT" id="cxTable"></table></div>
     <div class="howto"><b>HOW TO READ</b> · The other exit: don't run it, sell it. Compute Exchange
     (the DRW-backed GPU procurement marketplace) posts indicative ranges and supply levels for used and
     refurbished data-center GPUs — the empirical depreciation curve to weigh against the break-even clock.
@@ -354,8 +360,8 @@ if(D.gpuecon){(function(){
   const hwL=h=>G.hw[h]?G.hw[h].label:h.toUpperCase();
   const fm=v=>v>=100?Math.round(v).toString():v>=10?v.toFixed(1):v.toFixed(2);
   const WM=svg=>{const W=+svg.getAttribute('width'),H=+svg.getAttribute('height');
-    const t=S('text',{x:W/2,y:H/2+8,'text-anchor':'middle','font-size':Math.min(40,H/5),
-      'font-weight':'700',fill:'#1B2420',opacity:'.055','letter-spacing':'.2em'});
+    const t=S('text',{x:W/2,y:H/2+10,'text-anchor':'middle','font-size':Math.min(52,H/4),
+      'font-weight':'700',fill:'#1B2420',opacity:'.09','letter-spacing':'.22em'});
     t.setAttribute('style','font-family:Georgia,serif');
     t.textContent='THE COMPUTE BALTIC'; svg.insertBefore(t,svg.firstChild);};
 
@@ -630,7 +636,7 @@ if(D.gpuecon&&D.gpuecon.sla&&D.gpuecon.sla.some(e=>e.s50!==undefined)){(function
     });
     const ax=S('text',{x:(L+W-R)/2,y:H-2,'text-anchor':'middle'});
     ax.setAttribute('fill','#5B6660'); ax.textContent='$ per GPU-hour, median model, chat-grade'; svg.appendChild(ax);
-    (function(){const t=S('text',{x:(L+W-R)/2,y:H/2+8,'text-anchor':'middle','font-size':40,'font-weight':'700',fill:'#1B2420',opacity:'.055','letter-spacing':'.2em'});t.setAttribute('style','font-family:Georgia,serif');t.textContent='THE COMPUTE BALTIC';svg.insertBefore(t,svg.firstChild);})();
+    (function(){const t=S('text',{x:(L+W-R)/2,y:H/2+10,'text-anchor':'middle','font-size':50,'font-weight':'700',fill:'#1B2420',opacity:'.09','letter-spacing':'.22em'});t.setAttribute('style','font-family:Georgia,serif');t.textContent='THE COMPUTE BALTIC';svg.insertBefore(t,svg.firstChild);})();
     document.getElementById('wfNote').innerHTML=
       `<b>${HWL(s.hw)}:</b> contribution cash ≈ <b>$${cash.toFixed(2)}/GPU-hr</b> (${Math.round(100*cash/s.rev30_med)}% of the ceiling) → `+
       `purchase-price coverage ≈ <b>${mo>48?'>48':mo.toFixed(1)} months</b> on ${useQuote?'the formal quote':'public street mid'} `+
