@@ -2,20 +2,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Methodology — The Compute Baltic</title>
 <style>
- body{margin:0;background:#F7F5F0;color:#1B2420;font-family:Georgia,serif;line-height:1.6}
+ body{margin:0;background:#FCFBF8;color:#111;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.6}
  .wrap{max-width:860px;margin:0 auto;padding:0 22px 70px}
- header{background:#10171C;color:#F2EFE6;padding:20px 24px;margin:0 -22px 30px}
- header a{color:#D8FF3D;font-family:ui-monospace,Menlo,monospace;font-size:.76rem;text-decoration:none}
+ header{background:#FCFBF8;color:#111;padding:20px 24px 12px;margin:0 -22px 30px;border-bottom:4px solid #111}
+ header a{color:#E8380D;font-family:ui-monospace,Menlo,monospace;font-size:.76rem;text-decoration:none}
  h1{font-size:1.9rem;margin:.2em 0}
- h2{font-size:1.25rem;margin:1.8em 0 .4em;border-bottom:1px solid #DCE2D9;padding-bottom:6px}
+ h2{font-size:.85rem;margin:2.2em 0 .5em;border-top:3px solid #111;padding-top:10px;text-transform:uppercase;letter-spacing:.14em}
  p,li{font-size:.95rem;color:#40514A;max-width:78ch}
  li{margin:.35em 0}
  code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:.85em}
  b{color:#1B2420}
 </style></head><body>
 <header><div style="display:flex;align-items:center;gap:14px">
- <svg width="40" height="40" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" fill="none" stroke="#F2EFE6" stroke-width="2.5"/><path d="M8,54 h11 v-8 h11 v-8 h11 v-8 h11 v-8 h4" fill="none" stroke="#D8FF3D" stroke-width="3"/><text x="12" y="26" font-family="Georgia,serif" font-weight="700" font-size="19" fill="#F2EFE6">CB</text></svg>
- <div><div style="font-family:Georgia,serif;font-weight:700;font-size:1.1rem">THE COMPUTE BALTIC</div>
+  <div><div style="font-weight:800;font-size:1.3rem;letter-spacing:-.02em">The Compute Baltic</div>
  <a href="/compute-baltic-website/">← back to the desk</a></div>
 </div></header>
 <div class="wrap">
@@ -25,11 +24,24 @@ not affiliated with any exchange. Contact: <a href="mailto:danning@panteracapita
 
 <h2>The index family</h2>
 <ul>
-<li><b>CBI — Baltic Composite Index.</b> One number for the price of standardized GPU compute.
-Equal-weight average of the enterprise family sub-indices (H100, H200, B200, B300); each family is
-the per-day <b>median across venues</b>; each family is rebased at its first assessment.
-<b>Base = 1000 on 2026-01-28</b> — the first day of the cross-venue record. Dimensionless points,
-like a freight index. Families join the average as they list (B300 from June 2026).</li>
+<li><b>CBI — Baltic Composite Index (methodology v1.1, 2026-08-14).</b> One number for the price of
+standardized GPU compute, in index points. <b>Base = 1000 on 2026-01-28</b>.
+  <ul>
+  <li><b>Venue level:</b> each family&#39;s daily value is the <b>median</b> of $/GPU-hr on-demand rates
+  across reporting venues — robust to venues with thin books posting outlier quotes.</li>
+  <li><b>Family level:</b> constituents combine by <b>fleet-share weight</b> — each family&#39;s 30-day
+  trailing share of listed GPUs across venues that publish counts — with a <b>10% floor</b> for
+  admitted families without count data, renormalized daily. Current weights: H100 24% · H200 37% ·
+  B200 36%.</li>
+  <li><b>Admission rule (mechanical, no discretion):</b> a chip family joins when quoted on
+  <b>≥2 independent venues for 14 consecutive days</b>; it enters at half weight for its first
+  30 days, then full. It exits after 30 days below two-venue coverage. Founding constituents
+  (H100, H200, B200) grandfathered at base. <b>B300 is currently a candidate</b> — priced on a
+  single venue, published as a sub-index but excluded from the composite until a second venue
+  reports.</li>
+  <li><b>Rebasing:</b> each family rebased at its first assessment; version changes are announced
+  here with effect dates.</li>
+  </ul></li>
 <li><b>CBI-&lt;chip&gt;</b> — the quotable dollar price: cross-venue median rental rate, USD per GPU-hour,
 on-demand, per family.</li>
 <li><b>CBTY — Token Yield.</b> Dollars of tokens one B200 prints per hour: benchmark throughput ×
