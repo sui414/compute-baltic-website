@@ -2,9 +2,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>About — The Compute Baltic</title>
 <style>
+*{box-sizing:border-box}
  :root{--ink:#111;--red:#E8380D;--grey:#757A75;--line:#E6E6E4}
  body{margin:0;background:#fff;color:var(--ink);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.6}
- .wrap{max-width:840px;margin:0 auto;padding:0 24px 70px}
+ .wrap{max-width:1180px;margin:0 auto;padding:0 26px 70px}
  header{padding:22px 0 12px;border-bottom:4px solid var(--ink);display:flex;align-items:baseline;flex-wrap:wrap}
  .bword{font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
  .btag{margin-left:14px;color:var(--grey);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase}
@@ -23,34 +24,7 @@
  .ack{color:#333}
 </style></head><body>
 <div class="wrap">
-<style>
-.cbnav{display:flex;align-items:baseline;flex-wrap:wrap;padding:20px 0 11px;border-bottom:4px solid #111;
- font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
-.cbnav .cb-brand{font-weight:800;font-size:1.45rem;letter-spacing:-.02em;color:#111;text-decoration:none}
-.cbnav .cb-tag{margin-left:14px;color:#757A75;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase}
-.cbnav nav{margin-left:auto;display:flex;gap:20px;align-items:baseline}
-.cbnav nav a,.cbnav nav .mi{color:#111;font-size:.78rem;font-weight:700;text-decoration:none;cursor:pointer;
- font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
-.cbnav nav a:hover,.cbnav nav .mi:hover{color:#E8380D}
-.cbnav nav .cur{color:#E8380D}
-.cbnav .menuwrap{position:relative;display:inline-block}
-.cbnav .dd{display:none;position:absolute;right:0;top:100%;background:#111;padding:9px 14px;white-space:nowrap;z-index:60}
-.cbnav .menuwrap:hover .dd{display:block}
-.cbnav .dd a{color:#fff;font-size:.74rem;text-decoration:none;font-weight:400}
-.cbnav .dd a:hover{color:#E8380D}
-</style><div class="cbnav">
- <a class="cb-brand" href="/compute-baltic-website/">The Compute Baltic</a>
- <span class="cb-tag">Benchmarks for the compute economy</span>
- <nav>
-  <a href="/compute-baltic-website/">Dashboard</a>
-  <span class="menuwrap"><span class="mi">Articles ▾</span>
-    <span class="dd"><a href="/compute-baltic-website/article/">#1 · The Margin in the Machine</a></span></span>
-  <a href="/compute-baltic-website/methodology/">Methodology</a>
-  <a href="/compute-baltic-website/about/" class="cur">About</a>
-  
- </nav>
-</div>
-
+<div id="cbnav" data-current="about"></div><script src="/compute-baltic-website/assets/site.js" defer></script>
 <h1>A pricing language for compute and tokens: spot, margin, forward.</h1>
 <p>AI compute is the largest new commodity market in the world, and it trades without a common
 price language: the same GPU-hour is worth wildly different amounts depending on the workload it
@@ -102,4 +76,4 @@ framework, and operator ground truth from live GPU fleets.</li>
 <li><b>With reviews from the Pantera investment team</b> — Cosmo Jiang, Jay Yu, and Franklin Bi.</li>
 </ul>
 
-</div></body></html>
+<div id="cbfoot"></div></div></body></html>
