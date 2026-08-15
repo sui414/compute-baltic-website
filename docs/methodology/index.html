@@ -4,8 +4,8 @@
 <style>
  body{margin:0;background:#FFFFFF;color:#111;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.6}
  .wrap{max-width:860px;margin:0 auto;padding:0 22px 70px}
- header{background:#FFFFFF;color:#111;padding:20px 24px 12px;margin:0 -22px 30px;border-bottom:4px solid #111}
- header a{color:#E8380D;font-family:ui-monospace,Menlo,monospace;font-size:.76rem;text-decoration:none}
+
+
  h1{font-size:1.9rem;margin:.2em 0}
  h2{font-size:.85rem;margin:2.2em 0 .5em;border-top:3px solid #111;padding-top:10px;text-transform:uppercase;letter-spacing:.14em}
  p,li{font-size:.95rem;color:#40514A;max-width:78ch}
@@ -13,10 +13,33 @@
  code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:.85em}
  b{color:#1B2420}
 </style></head><body>
-<header><div style="display:flex;align-items:center;gap:14px">
-  <div><div style="font-weight:800;font-size:1.3rem;letter-spacing:-.02em">The Compute Baltic</div>
- <a href="/compute-baltic-website/">← Dashboard</a> &ensp; <a href="/compute-baltic-website/about/">About</a></div>
-</div></header>
+<style>
+.cbnav{display:flex;align-items:baseline;flex-wrap:wrap;padding:20px 0 11px;border-bottom:4px solid #111;
+ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+.cbnav .cb-brand{font-weight:800;font-size:1.45rem;letter-spacing:-.02em;color:#111;text-decoration:none}
+.cbnav .cb-tag{margin-left:14px;color:#757A75;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase}
+.cbnav nav{margin-left:auto;display:flex;gap:20px;align-items:baseline}
+.cbnav nav a,.cbnav nav .mi{color:#111;font-size:.78rem;font-weight:700;text-decoration:none;cursor:pointer;
+ font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+.cbnav nav a:hover,.cbnav nav .mi:hover{color:#E8380D}
+.cbnav nav .cur{color:#E8380D}
+.cbnav .menuwrap{position:relative;display:inline-block}
+.cbnav .dd{display:none;position:absolute;right:0;top:100%;background:#111;padding:9px 14px;white-space:nowrap;z-index:60}
+.cbnav .menuwrap:hover .dd{display:block}
+.cbnav .dd a{color:#fff;font-size:.74rem;text-decoration:none;font-weight:400}
+.cbnav .dd a:hover{color:#E8380D}
+</style><div class="cbnav">
+ <a class="cb-brand" href="/compute-baltic-website/">The Compute Baltic</a>
+ <span class="cb-tag">Benchmarks for the compute economy</span>
+ <nav>
+  <a href="/compute-baltic-website/">Dashboard</a>
+  <span class="menuwrap"><span class="mi">Articles ▾</span>
+    <span class="dd"><a href="/compute-baltic-website/article/">#1 · The Margin in the Machine</a></span></span>
+  <a href="/compute-baltic-website/methodology/" class="cur">Methodology</a>
+  <a href="/compute-baltic-website/about/">About</a>
+  
+ </nav>
+</div>
 <div class="wrap">
 <h1>Methodology</h1>
 <p>How the numbers on this desk are collected, computed, and refreshed. Independent research;
