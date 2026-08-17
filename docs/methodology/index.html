@@ -17,14 +17,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #11
 @media(max-width:640px){.wrap{padding:0 16px 50px}h1{font-size:1.45rem}}
 </style></head><body>
 <div class="wrap">
-<div id="cbnav" data-current="meth"></div><script src="/compute-baltic-website/assets/site.js?v=2" defer></script>
+<div id="cbnav" data-current="meth"></div><script src="/compute-baltic-website/assets/site.js?v=3" defer></script>
 <h1>Methodology</h1>
 <p>How the numbers on this desk are collected, computed, and refreshed. Independent research;
 not affiliated with any exchange. Contact: <a href="mailto:danning@panteracapital.com">danning@panteracapital.com</a> · <a href="https://x.com/sui414">@sui414</a>.</p>
 
 <h2>The index family</h2>
 <ul>
-<li><b>CBI — Baltic Composite Index (methodology v1.1, 2026-08-14).</b> One number for the price of
+<li><b>CBI — Baltic Composite Index (methodology v1.2, 2026-08-14).</b> One number for the price of
 standardized GPU compute, in index points. <b>Base = 1000 on 2026-01-28</b>.
   <ul>
   <li><b>Venue level:</b> each family&#39;s daily value is the <b>median</b> of $/GPU-hr on-demand rates
@@ -100,4 +100,35 @@ indications, not executable quotes; depreciation is market-implied only where se
 </ul>
 <p style="font-family:ui-monospace,Menlo,monospace;font-size:.74rem;color:#5B6660;margin-top:40px">
 The Compute Baltic · Danning Sui · in collaboration with Tarun Chitra (Robot Ventures) and Marvin Tong (Phala Network)</p>
+
+<h2>Data inventory &amp; venue set (v1.2)</h2>
+<p>Everything the desk collects, and what role it plays in the index. The composite uses <b>market
+venues only</b>; reference quotes are tracked and displayed but excluded by design.</p>
+<ul>
+<li><b>Index venues, active:</b> <a href="https://vast.ai">vast.ai</a> (order-book sweeps at 5-minute
+resolution + feed history, from 2026-01-28) · <a href="https://ornnai.com">ORNN</a> (transacted index) ·
+<a href="https://www.runpod.io">RunPod</a> (posted on-demand, daily from 2026-07-28).</li>
+<li><b>Index venues, ramping:</b> <a href="https://www.silicondata.com">Silicon Data</a> (daily H100/H200/B200
+index prints, collected from 2026-08-11 — the same index family CME&rsquo;s October futures settle on) ·
+<a href="https://www.primeintellect.ai">Prime Intellect</a> (posted on-demand per-GPU, from 2026-08-11).
+A venue joins a family&rsquo;s median mechanically after <b>14 reporting days within a 16-day window</b>;
+both are on track to admit in late August. Until then they appear in the coverage lanes but not the median.</li>
+<li><b>Tracked, excluded from the index by design:</b> posted list prices from neoclouds (CoreWeave, Nebius,
+Crusoe) and AI principals (Fireworks, Together, Modal, Baseten), collected daily from 2026-08-12 — rate-card
+asks are sticky and rarely paid at size; including them would bias the median upward and deaden the index.
+Mithril (spot/interruptible 7-day averages) — a different firmness of delivery than the on-demand hour the
+index prices. Chutes (decentralized marketplace) — monitored, thin.</li>
+<li><b>Reference series (not spot inputs):</b> CME &times; Silicon Data compute futures — settlement prints
+collected once trading opens October 5, as the market&rsquo;s first term structure · SemiAnalysis quarterly
+H100 1-yr contract index · Kalshi GPU prediction ladders · Itô compute baskets (NAVs) · Architect marks ·
+Compute Exchange secondary hardware quotes (capital-asset prices, not rentals) · USD.ai financing yields.</li>
+</ul>
+<h2>Version history</h2>
+<ul>
+<li><b>v1.2</b> (2026-08-17) — venue set expanded: Silicon Data and Prime Intellect added with a mechanical
+14-of-16-day venue admission rule; list-price and spot quotes documented as tracked-but-excluded. No level
+change on adoption date (both venues still ramping).</li>
+<li><b>v1.1</b> (2026-08-14) — fleet-share weighting, mechanical family admission, B300 candidate status.</li>
+<li><b>v1.0</b> (2026-08-13) — launch: equal-weight cross-venue medians, base 1000 on 2026-01-28.</li>
+</ul>
 <div id="cbfoot"></div></div></body></html>
