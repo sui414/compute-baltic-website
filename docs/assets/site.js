@@ -2,7 +2,7 @@
 (function(){
   var ROOT='/compute-baltic-website/';
   var css=document.createElement('style');
-  css.textContent="\n.cbnav{display:flex;align-items:baseline;flex-wrap:wrap;padding:20px 0 11px;border-bottom:4px solid #111;\n font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}\n.cbnav .cb-brand{font-weight:800;font-size:1.45rem;letter-spacing:-.02em;color:#111;text-decoration:none}\n.cbnav .cb-tag{margin-left:14px;color:#6F746F;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase}\n.cbnav nav{margin-left:auto;display:flex;gap:20px;align-items:baseline}\n.cbnav nav a,.cbnav nav .cbn-mi{color:#111;font-size:.78rem;font-weight:700;text-decoration:none;cursor:pointer;\n font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}\n.cbnav nav a:hover,.cbnav nav .cbn-mi:hover{color:#DC3400}\n.cbnav nav .cur{color:#DC3400}\n.cbnav .cbn-mw{position:relative;display:inline-block}\n.cbnav .cbn-dd{display:none;position:absolute;right:0;top:100%;background:#111;padding:9px 14px;white-space:nowrap;z-index:60}\n.cbnav .cbn-mw:hover .cbn-dd{display:block}\n.cbnav .cbn-dd a{color:#fff;font-size:.74rem;text-decoration:none;font-weight:400}\n.cbnav .cbn-dd a:hover{color:#FF8A66}\n.cbfoot{margin:52px 0 56px;padding-top:12px;border-top:4px solid #111;font-size:.74rem;color:#6F746F;\n display:flex;align-items:center;gap:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}\n.cbfoot img{width:36px;height:36px;border-radius:18px;border:1px solid #E6E6E4}\n.cbfoot a{color:#111;font-weight:700;text-decoration:none}\n.cbfoot a:hover{color:#DC3400}\n.cbfoot a.mut{font-weight:400;color:#6F746F}\n.cbnav a:focus-visible,.cbnav .cbn-mi:focus-visible,.cbfoot a:focus-visible{outline:2px solid #111;outline-offset:2px}\n@media(max-width:640px){\n .cbnav{padding:14px 0 9px}\n .cbnav .cb-brand{font-size:1.15rem}\n .cbnav .cb-tag{display:none}\n .cbnav nav{gap:12px;flex-wrap:wrap;margin-left:0}\n .cbfoot{flex-wrap:wrap;font-size:.68rem}\n}\n";
+  css.textContent="\n.cbnav{display:flex;align-items:baseline;flex-wrap:wrap;padding:20px 0 11px;border-bottom:4px solid #111;\n font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}\n.cbnav .cb-brand{font-weight:800;font-size:1.45rem;letter-spacing:-.02em;color:#111;text-decoration:none}\n.cbnav .cb-tag{margin-left:14px;color:#6F746F;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase}\n.cbnav nav{margin-left:auto;display:flex;gap:20px;align-items:baseline}\n.cbnav nav a,.cbnav nav .cbn-mi{color:#111;font-size:.78rem;font-weight:700;text-decoration:none;cursor:pointer;\n font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}\n.cbnav nav a:hover,.cbnav nav .cbn-mi:hover{color:#DC3400}\n.cbnav nav .cur{color:#DC3400}\n.cbnav .cbn-mw{position:relative;display:inline-block}\n.cbnav .cbn-dd{display:none;position:absolute;right:0;top:100%;background:#111;padding:9px 14px;white-space:nowrap;z-index:60}\n.cbnav .cbn-mw:hover .cbn-dd{display:block}\n.cbnav .cbn-dd a{color:#fff;font-size:.74rem;text-decoration:none;font-weight:400}\n.cbnav .cbn-dd a:hover{color:#FF8A66}\n.cbfoot{margin:52px 0 56px;padding-top:12px;border-top:4px solid #111;font-size:.74rem;color:#6F746F;\n display:flex;align-items:center;gap:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}\n.cbfoot img{width:36px;height:36px;border-radius:18px;border:1px solid #E6E6E4}\n.cbfoot a{color:#111;font-weight:700;text-decoration:none}\n.cbfoot a:hover{color:#DC3400}\n.cbfoot a.mut{font-weight:400;color:#6F746F}\n.cbnav a:focus-visible,.cbnav .cbn-mi:focus-visible,.cbfoot a:focus-visible{outline:2px solid #111;outline-offset:2px}\n@media(max-width:640px){\n .cbnav{padding:14px 0 9px}\n .cbnav .cb-brand{font-size:1.15rem}\n .cbnav .cb-tag{display:none}\n .cbnav nav{gap:12px;flex-wrap:wrap;margin-left:0}\n .cbfoot{flex-wrap:wrap;font-size:.68rem}\n}\n.cbsub-veil{position:fixed;inset:0;background:rgba(17,17,17,.35);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}.cbsub{background:#fff;border-top:4px solid #111;box-shadow:0 10px 40px rgba(0,0,0,.18);max-width:430px;width:100%;padding:26px 28px 22px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;position:relative}.cbsub h3{margin:0 0 6px;font-size:1.15rem;font-weight:800;letter-spacing:-.01em}.cbsub p{margin:0 0 14px;font-size:.78rem;color:#6F746F;line-height:1.5}.cbsub form{display:flex;gap:8px}.cbsub input[type=email]{flex:1;border:1px solid #111;padding:9px 11px;font-size:.85rem;font-family:inherit}.cbsub button{background:#111;color:#fff;border:none;padding:9px 16px;font-weight:700;font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;cursor:pointer}.cbsub button:hover{background:#DC3400}.cbsub .cbsub-x{position:absolute;top:8px;right:12px;background:none;color:#6F746F;font-size:1.1rem;padding:4px 8px}.cbsub .cbsub-x:hover{background:none;color:#111}.cbsub .cbsub-ok{color:#0F7B3E;font-weight:700;font-size:.85rem;margin-top:10px}@media(max-width:640px){.cbsub{padding:20px 18px 16px}}";
   document.head.appendChild(css);
 
   function cur(k,c){return k===c?' class="cur"':''}
@@ -30,4 +30,48 @@
       '<span> — in collaboration with </span><a class="mut" href="https://x.com/tarunchitra">Tarun Chitra</a><span> (Robot Ventures) and </span>'+
       '<a class="mut" href="https://x.com/marvin_tong">Marvin Tong</a><span> (Phala Network)</span></div>';
   }
+})();
+
+/* ---- email capture (first visit; shown on dashboard + article pages) ---- */
+(function(){
+  var SUBSCRIBE_URL='';  /* set to e.g. https://buttondown.com/api/emails/embed-subscribe/computebaltic to activate direct capture */
+  var cur=(document.getElementById('cbnav')||{getAttribute:function(){return''}}).getAttribute('data-current')||'';
+  if(cur!=='dash'&&cur!=='articles') return;
+  try{ if(localStorage.getItem('cb_sub_seen')) return; }catch(e){ return; }
+  function show(){
+    try{ localStorage.setItem('cb_sub_seen','1'); }catch(e){}
+    var veil=document.createElement('div'); veil.className='cbsub-veil';
+    veil.innerHTML='<div class="cbsub" role="dialog" aria-modal="true" aria-label="Subscribe to The Compute Baltic">'
+      +'<button class="cbsub-x" aria-label="Close">✕</button>'
+      +'<h3>Follow the compute market</h3>'
+      +'<p>Indices, margins, and the papers — from The Compute Baltic. Occasional updates, no noise.</p>'
+      +'<form novalidate><input type="email" required placeholder="you@fund.com" aria-label="Email address"><button type="submit">Follow</button></form>'
+      +'<div class="cbsub-ok" style="display:none">Thanks — you&rsquo;re on the list.</div></div>';
+    document.body.appendChild(veil);
+    var box=veil.querySelector('.cbsub'), form=veil.querySelector('form'),
+        input=veil.querySelector('input'), ok=veil.querySelector('.cbsub-ok');
+    function close(){ veil.remove(); document.removeEventListener('keydown',esc); }
+    function esc(e){ if(e.key==='Escape') close(); }
+    veil.addEventListener('click',function(e){ if(e.target===veil) close(); });
+    veil.querySelector('.cbsub-x').addEventListener('click',close);
+    document.addEventListener('keydown',esc);
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=(input.value||'').trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){ input.style.borderColor='#DC3400'; return; }
+      if(SUBSCRIBE_URL){
+        var fd=new FormData(); fd.append('email',v);
+        fetch(SUBSCRIBE_URL,{method:'POST',body:fd,mode:'no-cors'}).catch(function(){});
+        form.style.display='none'; ok.style.display='block';
+        setTimeout(close,2600);
+      }else{
+        location.href='mailto:danning@panteracapital.com?subject='+encodeURIComponent('Follow The Compute Baltic')
+          +'&body='+encodeURIComponent('Please add me to the update list: '+v);
+        form.style.display='none'; ok.style.display='block';
+        setTimeout(close,2600);
+      }
+    });
+    input.focus();
+  }
+  setTimeout(show, 7000);
 })();
