@@ -3,28 +3,30 @@
 <title>About — The Compute Baltic</title>
 <style>
 *{box-sizing:border-box}
- :root{--ink:#111;--red:#E8380D;--grey:#757A75;--line:#E6E6E4}
+ :root{--ink:#111;--red:#DC3400;--grey:#6F746F;--line:#E6E6E4}
  body{margin:0;background:#fff;color:var(--ink);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.6}
  .wrap{max-width:1180px;margin:0 auto;padding:0 26px 70px}
  header{padding:22px 0 12px;border-bottom:4px solid var(--ink);display:flex;align-items:baseline;flex-wrap:wrap}
- .bword{font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
- .btag{margin-left:14px;color:var(--grey);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase}
+ .bword{font-weight:800;font-size:1.45rem;letter-spacing:-.02em}
+ .btag{margin-left:14px;color:var(--grey);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase}
  nav{margin-left:auto;display:flex;gap:18px}
  nav a{color:var(--ink);font-size:.78rem;font-weight:700;text-decoration:none}
  nav a:hover{color:var(--red)}
- h1{font-size:2rem;font-weight:800;letter-spacing:-.02em;margin:.9em 0 .3em}
- h2{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;border-top:2px solid var(--ink);padding-top:10px;margin:2.4em 0 .6em}
+ h1{font-size:1.9rem;font-weight:800;letter-spacing:-.02em;margin:.9em 0 .3em}
+ h2{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;border-top:2px solid var(--ink);padding-top:10px;margin:2.4em 0 .6em}
  p,li{font-size:.95rem;color:#333;max-width:72ch}
  li{margin:.4em 0}
  b{color:var(--ink)}
  a{color:var(--red)}
- .tabmap{border-collapse:collapse;width:100%;font-size:.88rem;margin-top:6px}
+ .tabmap{border-collapse:collapse;width:100%;font-size:.85rem;margin-top:6px}
  .tabmap td{padding:10px 14px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
  .tabmap td:first-child{font-weight:700;white-space:nowrap}
  .ack{color:#333}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #111;outline-offset:2px}
+@media(max-width:640px){.wrap{padding:0 16px 50px}h1{font-size:1.45rem}}
 </style></head><body>
 <div class="wrap">
-<div id="cbnav" data-current="about"></div><script src="/compute-baltic-website/assets/site.js" defer></script>
+<div id="cbnav" data-current="about"></div><script src="/compute-baltic-website/assets/site.js?v=2" defer></script>
 <h1>A pricing language for compute and tokens: spot, margin, forward.</h1>
 <p>AI compute is the largest new commodity market in the world, and it trades without a common
 price language: the same GPU-hour is worth wildly different amounts depending on the workload it
@@ -57,7 +59,7 @@ levels, and the term structure from one week to a year.</td></tr>
 <tr><td>Model Compatibility</td><td>Which models run on which silicon — marketplace recommendations,
 memory arithmetic, and observed production deployments, three independent lenses.</td></tr>
 </table>
-<p style="font-size:.8rem;color:var(--grey)">Sections beyond Compute Margin are in early access —
+<p style="font-size:.78rem;color:var(--grey)">Sections beyond Compute Margin are in early access —
 they open on the full dashboard. If you work on compute markets, email
 <a href="mailto:danning@panteracapital.com">danning@panteracapital.com</a> or DM
 <a href="https://x.com/sui414">@sui414</a>.</p>
