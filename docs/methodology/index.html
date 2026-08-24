@@ -88,8 +88,7 @@ no public source measures it) × 85% share-and-price realization − $0.25/GPU-h
 already in the settle; no separate cache multiplier (it would double-count).</li>
 <li><b>Hyperscaler and spot venues (added 2026-08-24).</b> Azure via its official
 retail prices API — the richest source on the desk, returning every SKU &times; region &times; tier, so
-on-demand, spot, Low Priority and reserved arrive together (H100 <code>NC40ads_H100_v5</code> in
-East US: on-demand $6.98, spot $1.29, Low Priority $1.40). AWS via the public Spot advisor feed,
+on-demand, spot, Low Priority and reserved arrive together (H100 <code>NC40ads_H100_v5</code> in East US: on-demand $6.98, spot $1.29, Low Priority $1.40). These are raw IaaS virtual machines, not managed inference &mdash; the query filters on <code>serviceName eq 'Virtual Machines'</code> and the rows return <code>serviceFamily: Compute</code>, so Azure’s hosted-inference products cannot enter this series. AWS via the public Spot advisor feed,
 <b>spot only</b> &mdash; its on-demand list is published elsewhere and is deliberately not inferred
 from it. Only <b>single-GPU</b> SKUs (<code>NC40ads</code>, <code>p5.4xlarge</code>) are used in
 cross-venue comparisons, because they need no bundling divisor. Region dispersion is large &mdash;
