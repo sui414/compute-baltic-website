@@ -104,10 +104,44 @@ The Compute Baltic · Danning Sui · in collaboration with Tarun Chitra (Robot V
 <h2>Data inventory &amp; venue set (v1.2)</h2>
 <p>Everything the desk collects, and what role it plays in the index. The composite uses <b>market
 venues only</b>; reference quotes are tracked and displayed but excluded by design.</p>
+
+<div class="callout" style="border-left:3px solid #DC3400;padding:12px 14px;margin:14px 0;background:#FAFAF8">
+<b>Fills versus asks — the asymmetry to read every margin through.</b> The revenue leg of the
+margin is <b>settled</b>: OpenRouter effective prices are what buyers were actually billed on live
+traffic, cache included. The cost leg is almost entirely <b>quoted</b> — venue asks and posted rate
+cards, not cleared trades. Only <a href="https://sfcompute.com">SF Compute</a> runs an order book and
+prints cleared prices, and it clears H100 roughly <b>30% below</b> our five-venue composite. Taken
+alone, a quoted cost leg <i>understates</i> the token margin. But the revenue leg is biased the other
+way and by more, because it is a sold-out ceiling — so the two errors oppose, and only the rent one is
+currently measurable. Read every margin as a bracket, and read the <b>break-even utilization</b>
+column as the number that tells you how much revenue-side error the trade can absorb.
+<br><br>
+A second consequence of a quote-based cost leg: <b>the quotes do not move.</b> Across the neocloud and
+inference-principal rate cards we track, <b>0 of 43</b> vendor-SKU series changed price over eight days
+of daily observation — which is why they are collected but kept out of the composite.
+<br><br>
+<b>Specs are not matched — but the contract type is.</b> A composite &ldquo;H100&rdquo; blends SXM and
+PCIe parts, vetted-datacenter and marketplace-host tiers, and every geography; none of the venues
+publishes interconnect, and region is country-level at best. The cross-venue band is therefore not
+error around a true price — it is the absence of a single underlying.
+<br><br>
+The one dimension we <i>do</i> hold fixed is the product: <b>every series in the composite is
+on-demand hourly</b>. GPU rates are ordered by delivery promise — an interruptible or preemptible hour
+prices below a guaranteed on-demand hour, and a committed reserved term prices below both — so
+blending them would drag the median down and read as a cheaper market rather than a different product.
+Collected but excluded on those grounds: RunPod&rsquo;s reserved rates (1wk/1mo/3mo/6mo),
+vast.ai&rsquo;s bid/interruptible book, Prime Intellect&rsquo;s spot and community tiers, Mithril&rsquo;s
+spot instances. Two imperfections remain: ORNN and Silicon Data publish a single daily index number
+without documenting its term, so both are <i>assumed</i> on-demand; and SF Compute&rsquo;s clearing
+average pools every duration traded that day, its contracts being arbitrary-length.
+</div>
+
 <ul>
 <li><b>Index venues, active:</b> <a href="https://vast.ai">vast.ai</a> (order-book sweeps at 5-minute
 resolution + feed history, from 2026-01-28) · <a href="https://ornnai.com">ORNN</a> (transacted index) ·
-<a href="https://www.runpod.io">RunPod</a> (posted on-demand, daily from 2026-07-28).</li>
+<a href="https://www.runpod.io">RunPod</a> (posted on-demand, daily from 2026-07-28) ·
+<a href="https://sfcompute.com">SF Compute</a> (daily order-book clearing average, from 2026-07-25 —
+<b>the only cleared price in the venue set</b>; H100 prints most days, H200/B200 list but rarely trade).</li>
 <li><b>Index venues, ramping:</b> <a href="https://www.silicondata.com">Silicon Data</a> (daily H100/H200/B200
 index prints, collected from 2026-08-11 — the same index family CME&rsquo;s October futures settle on) ·
 <a href="https://www.primeintellect.ai">Prime Intellect</a> (posted on-demand per-GPU, from 2026-08-11).
@@ -117,7 +151,9 @@ both are on track to admit in late August. Until then they appear in the coverag
 Crusoe) and AI principals (Fireworks, Together, Modal, Baseten), collected daily from 2026-08-12 — rate-card
 asks are sticky and rarely paid at size; including them would bias the median upward and deaden the index.
 Mithril (spot/interruptible 7-day averages) — a different firmness of delivery than the on-demand hour the
-index prices. Chutes (decentralized marketplace) — monitored, thin.</li>
+index prices. Chutes (decentralized marketplace) — monitored, thin. Empirically, the exclusion is
+justified by stickiness rather than by level: none of the 43 tracked vendor-SKU rate-card series moved
+across eight days of daily observation.</li>
 <li><b>Reference series (not spot inputs):</b> CME &times; Silicon Data compute futures — announced August 11 (the launch the financialization
 commentary covers); <b>no market data exists until trading opens October 5</b>, at which point daily
 settlement prints will be collected as the market&rsquo;s first term structure · SemiAnalysis quarterly
@@ -126,6 +162,15 @@ Compute Exchange secondary hardware quotes (capital-asset prices, not rentals) �
 </ul>
 <h2>Version history</h2>
 <ul>
+<li><b>v1.3</b> (2026-08-24) — <b>SF Compute admitted</b>, the venue set&rsquo;s first cleared-price
+source (order-book daily clearing average; H100 in practice). Both legs of the margin now share one
+<b>trailing 7-day window</b>, with rents averaged per venue before the cross-venue median so a
+venue&rsquo;s reporting calendar cannot move the level. Composite day universe now spans every venue
+rather than vast alone, and a venue&rsquo;s last print carries forward at most 3 days — a stalled
+vast collector had frozen all rents for six days under a current as-of stamp. Mithril removed from
+the ledger rent to match this page (it had been included there while excluded here). Prefill/decode
+throughputs rescaled onto the full installed pool, which lowers rack-scale revenue materially
+(~3&times; on GB200/GB300, where ~90% of benchmarked configs are disaggregated).</li>
 <li><b>v1.2</b> (2026-08-17) — venue set expanded: Silicon Data and Prime Intellect added with a mechanical
 14-of-16-day venue admission rule; list-price and spot quotes documented as tracked-but-excluded. No level
 change on adoption date (both venues still ramping).</li>
