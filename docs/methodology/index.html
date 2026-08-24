@@ -86,6 +86,17 @@ figures apply the operating chain: 95% online × 97% SLA pass × 70% paid utiliz
 no public source measures it) × 85% share-and-price realization − $0.25/GPU-hr power + colo.</li>
 <li><b>Cache handling.</b> Prices are measured token-weighted effective prices, so observed caching is
 already in the settle; no separate cache multiplier (it would double-count).</li>
+<li><b>Hyperscaler and spot venues (added 2026-08-24).</b> Azure via its official
+retail prices API — the richest source on the desk, returning every SKU &times; region &times; tier, so
+on-demand, spot, Low Priority and reserved arrive together (H100 <code>NC40ads_H100_v5</code> in
+East US: on-demand $6.98, spot $1.29, Low Priority $1.40). AWS via the public Spot advisor feed,
+<b>spot only</b> &mdash; its on-demand list is published elsewhere and is deliberately not inferred
+from it. Only <b>single-GPU</b> SKUs (<code>NC40ads</code>, <code>p5.4xlarge</code>) are used in
+cross-venue comparisons, because they need no bundling divisor. Region dispersion is large &mdash;
+Azure H100 spot spans roughly $1.29&ndash;$2.18 across 25 regions &mdash; so the cheapest region is
+quoted and named. Spheron is collected but currently yields nothing: its rate table is
+client-rendered, and its prices are on-demand rather than spot despite being commonly cited as
+spot.</li>
 <li><b>Bundled specs are NOT normalized.</b> Every $/GPU-hr on this desk divides a
 price that may also buy vCPU, RAM and local storage, and those bundles differ wildly between SKUs —
 Mithril&rsquo;s H100 instance carries 12.5TB of NVMe against 1.1TB on its H200, which alone moves the
