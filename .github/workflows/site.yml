@@ -35,7 +35,7 @@ jobs:
           git commit -q -m "site: $(date -u +%F)"
           for i in 1 2 3 4 5; do
             git push -q && exit 0
-            git pull --rebase -X ours -q || { git rebase --abort 2>/dev/null || true; exit 1; }
+            git pull --rebase -X theirs -q || { git rebase --abort 2>/dev/null || true; exit 1; }
             sleep 7
           done
           exit 1
