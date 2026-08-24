@@ -33,4 +33,9 @@ jobs:
           git add docs
           git diff --cached --quiet && exit 0
           git commit -q -m "site: $(date -u +%F)"
-          git push -q
+          for i in 1 2 3 4 5; do
+            git push -q && exit 0
+            git pull --rebase -X ours -q || { git rebase --abort 2>/dev/null || true; exit 1; }
+            sleep 7
+          done
+          exit 1
