@@ -1,0 +1,25 @@
+name: daily-brief
+on:
+  schedule:
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: prepare
+        run: |
+          printf '%s\n' "${{ secrets.PRIVATE_DEPLOY_KEY }}" > "$RUNNER_TEMP/dk"
+          chmod 600 "$RUNNER_TEMP/dk"
+      - name: run
+        env:
+          GIT_SSH_COMMAND: ssh -i ${{ runner.temp }}/dk -o StrictHostKeyChecking=accept-new
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          git clone --depth 5 git@github.com:sui414/compute-baltic-data.git "$RUNNER_TEMP/w"
+          cd "$RUNNER_TEMP/w" && bash ops/t.sh
