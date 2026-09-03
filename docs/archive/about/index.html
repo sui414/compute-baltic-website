@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — The Compute Baltic</title>
+<style>
+*{box-sizing:border-box}
+ :root{--ink:#111;--red:#DC3400;--grey:#6F746F;--line:#E6E6E4}
+ body{margin:0;background:#fff;color:var(--ink);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.6}
+ .wrap{max-width:1180px;margin:0 auto;padding:0 26px 70px}
+ header{padding:22px 0 12px;border-bottom:4px solid var(--ink);display:flex;align-items:baseline;flex-wrap:wrap}
+ .bword{font-weight:800;font-size:1.45rem;letter-spacing:-.02em}
+ .btag{margin-left:14px;color:var(--grey);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase}
+ nav{margin-left:auto;display:flex;gap:18px}
+ nav a{color:var(--ink);font-size:.78rem;font-weight:700;text-decoration:none}
+ nav a:hover{color:var(--red)}
+ h1{font-size:1.9rem;font-weight:800;letter-spacing:-.02em;margin:.9em 0 .3em}
+ h2{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;border-top:2px solid var(--ink);padding-top:10px;margin:2.4em 0 .6em}
+ p,li{font-size:.95rem;color:#333;max-width:72ch}
+ li{margin:.4em 0}
+ b{color:var(--ink)}
+ a{color:var(--red)}
+ .tabmap{border-collapse:collapse;width:100%;font-size:.85rem;margin-top:6px}
+ .tabmap td{padding:10px 14px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+ .tabmap td:first-child{font-weight:700;white-space:nowrap}
+ .ack{color:#333}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #111;outline-offset:2px}
+@media(max-width:640px){.wrap{padding:0 16px 50px}h1{font-size:1.45rem}}
+</style></head><body>
+<div class="wrap">
+<div id="cbnav" data-current="about"></div><script src="../assets/site.js?v=4" defer></script>
+<h1>A pricing language for compute and tokens: spot, margin, forward.</h1>
+<p>AI compute is the largest new commodity market in the world, and it trades without a common
+price language: the same GPU-hour is worth wildly different amounts depending on the workload it
+runs, the interconnect it sits on, the service level it promises, and the venue that quotes it.
+The Compute Baltic exists to make that market legible — daily benchmarks, margin models, and
+research built from primary data collected around the clock.</p>
+
+<h2>Why "Baltic"</h2>
+<p>The name honors the maritime benchmark markets, where the price of the last great
+<i>non-storable</i> commodity — ship-days — has been assessed daily for centuries. An unused
+GPU-hour evaporates exactly the way an unused ship-day does; and like freight, compute will not
+collapse onto a single world price. Shipping solved this with route-standardized assessments that
+the whole market settles to. Compute needs the same, and this desk is our attempt to build it:
+the Baltic Composite Index (CBI) and its family of sub-benchmarks. We are an independent research
+effort — not affiliated with any exchange.</p>
+
+<h2>Data Catalog</h2>
+<table class="tabmap">
+<tr><td>Compute Margin</td><td><b>Open now.</b> The full P&amp;L of a unit of compute: what each
+accelerator costs to buy or rent, the token revenue it can generate at settled market prices, and
+the margins left for each business model — owner, landlord, operator.</td></tr>
+<tr><td>GPU Index</td><td>The rental-price layer: CBI and its per-chip sub-indices, cross-venue
+composites with dispersion bands, marketplace microstructure, and the know-your-silicon reference.</td></tr>
+<tr><td>Token Index</td><td>The output layer: what a million tokens sells for — per frontier lab
+and per open model — plus usage volumes and cache economics from the routing layer&#39;s daily record.</td></tr>
+<tr><td>Provider Landscape</td><td>Who serves what on which hardware, at what implied margin —
+per-endpoint silicon inference and price forensics across the serving market.</td></tr>
+<tr><td>Liquidity Curve</td><td>Whether you can actually get the compute: order-book depth, stock
+levels, and the term structure from one week to a year.</td></tr>
+<tr><td>Model Compatibility</td><td>Which models run on which silicon — marketplace recommendations,
+memory arithmetic, and observed production deployments, three independent lenses.</td></tr>
+</table>
+<p style="font-size:.78rem;color:var(--grey)">Sections beyond Compute Margin are in early access —
+they open on the full dashboard. If you work on compute markets, email
+<a href="mailto:danning@panteracapital.com">danning@panteracapital.com</a> or DM
+<a href="https://x.com/sui414">@sui414</a>.</p>
+
+<h2>Acknowledgments</h2>
+<p class="ack">Built and maintained by <a href="https://x.com/sui414"><b>Danning Sui</b></a>,
+data scientist at <a href="https://x.com/PanteraCapital"><b>Pantera Capital</b></a> — every
+collector, index, and model on this site.</p>
+<ul class="ack">
+<li><b>In collaboration with</b> <a href="https://x.com/tarunchitra">Tarun Chitra</a>
+(<a href="https://x.com/robotventures">Robot Ventures</a>) — the compute-markets thesis this desk
+grew from.</li>
+<li><b>With advice from</b> <a href="https://x.com/marvin_tong">Marvin Tong</a>
+(<a href="https://x.com/PhalaNetwork">Phala Network</a>) — the cost → tokens → revenue → margin
+framework, and operator ground truth from live GPU fleets.</li>
+<li><b>With reviews from the Pantera investment team</b> — Cosmo Jiang, Jay Yu, and Franklin Bi.</li>
+</ul>
+
+<div id="cbfoot"></div></div></body></html>

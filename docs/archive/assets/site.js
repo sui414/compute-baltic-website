@@ -10,10 +10,6 @@
   if(nav){
     var c=nav.getAttribute('data-current')||'';
     nav.className='cbnav';
-    if(nav.getAttribute('data-nav')==='minimal'){
-      nav.innerHTML='<a class="cb-brand" href="'+ROOT+'">The Compute Baltic</a>'+
-        '<span class="cb-tag">Benchmarks for the compute economy</span>';
-    } else
     nav.innerHTML=
       '<a class="cb-brand" href="'+ROOT+'">The Compute Baltic</a>'+
       '<span class="cb-tag">Benchmarks for the compute economy</span>'+

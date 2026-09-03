@@ -1,0 +1,199 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology — The Compute Baltic</title>
+<style>
+*{box-sizing:border-box}
+ body{margin:0;background:#FFFFFF;color:#111;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.6}
+ .wrap{max-width:1180px;margin:0 auto;padding:0 26px 70px}
+
+
+ h1{font-size:1.9rem;margin:.2em 0}
+ h2{font-size:.85rem;margin:2.2em 0 .5em;border-top:2px solid #111;padding-top:10px;text-transform:uppercase;letter-spacing:.14em}
+ p,li{font-size:.95rem;color:#40514A;max-width:78ch}
+ li{margin:.35em 0}
+ code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:.85em}
+ b{color:#1B2420}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #111;outline-offset:2px}
+@media(max-width:640px){.wrap{padding:0 16px 50px}h1{font-size:1.45rem}}
+</style></head><body>
+<div class="wrap">
+<div id="cbnav" data-current="meth"></div><script src="../assets/site.js?v=4" defer></script>
+<h1>Methodology</h1>
+<p>How the numbers on this desk are collected, computed, and refreshed. Independent research;
+not affiliated with any exchange. Contact: <a href="mailto:danning@panteracapital.com">danning@panteracapital.com</a> · <a href="https://x.com/sui414">@sui414</a>.</p>
+
+<h2>The index family</h2>
+<ul>
+<li><b>CBI — Baltic Composite Index (methodology v1.2, 2026-08-14).</b> One number for the price of
+standardized GPU compute, in index points. <b>Base = 1000 on 2026-01-28</b>.
+  <ul>
+  <li><b>Venue level:</b> each family&#39;s daily value is the <b>median</b> of $/GPU-hr on-demand rates
+  across reporting venues — robust to venues with thin books posting outlier quotes.</li>
+  <li><b>Family level:</b> constituents combine by <b>fleet-share weight</b> — each family&#39;s 30-day
+  trailing share of listed GPUs across venues that publish counts — with a <b>10% floor</b> for
+  admitted families without count data, renormalized daily. Current weights: H100 24% · H200 37% ·
+  B200 36%.</li>
+  <li><b>Admission rule (mechanical, no discretion):</b> a chip family joins when quoted on
+  <b>≥2 independent venues for 14 consecutive days</b>; it enters at half weight for its first
+  30 days, then full. It exits after 30 days below two-venue coverage. Founding constituents
+  (H100, H200, B200) grandfathered at base. <b>B300 is currently a candidate</b> — priced on a
+  single venue, published as a sub-index but excluded from the composite until a second venue
+  reports.</li>
+  <li><b>Rebasing:</b> each family rebased at its first assessment; version changes are announced
+  here with effect dates.</li>
+  </ul></li>
+<li><b>CBI-&lt;chip&gt;</b> — the quotable dollar price: cross-venue median rental rate, USD per GPU-hour,
+on-demand, per family.</li>
+<li><b>CBTY — Token Yield.</b> Dollars of tokens one B200 prints per hour: benchmark throughput ×
+settled token prices; median model, ≥30 tok/s per user, sold-out basis (a gross-revenue ceiling).</li>
+<li><b>CBTS — Token Spread.</b> (Token yield − rental rate) ÷ token yield on the same chip — the
+operator&#39;s gross conversion margin.</li>
+</ul>
+
+<h2>Data sources</h2>
+<ul>
+<li><b>GPU rental rates:</b> vast.ai marketplace (our own 5-minute order-book sweeps; historical daily
+series from Jan 28, 2026), ORNN curated index (from Apr 2026), RunPod (posted + reserved term
+structure), Silicon Data headline values (display with attribution), Prime Intellect, Mithril.</li>
+<li><b>Posted list prices:</b> CoreWeave (instance-normalized), Nebius, Crusoe; AI principals —
+Fireworks, Together, Modal (per-second normalized), Baseten (per-minute normalized).</li>
+<li><b>Token prices &amp; usage:</b> OpenRouter — token-weighted effective prices (post-cache, measured
+across live traffic), per-model daily volumes, cache-hit rates; ORNN per-lab token indices.</li>
+<li><b>Inference physics:</b> SemiAnalysis InferenceX open benchmark (Apache-2.0) — tokens/sec per GPU
+(input/output split, normalized over the full prefill+decode pool) × interactivity, 11 open frontier
+models × 10 accelerators, with dated history since Sep 2025.</li>
+<li><b>Hardware prices:</b> public street-quote ranges (OEM/analyst coverage, evidence-labeled),
+one formal OEM quote (fully configured, labeled), and Compute Exchange secondary-market
+prints (used/refurbished, daily) for market-implied depreciation.</li>
+<li><b>Venues &amp; derivatives watch:</b> Itô Compute basket NAVs, Kalshi compute series, Architect,
+ComputeIndex, USD.ai financing metrics.</li>
+</ul>
+
+<h2>Collection cadence &amp; refresh schedule</h2>
+<ul>
+<li><b>Every 5 minutes</b> (within hourly windows): vast.ai order-book sweeps; OpenRouter performance
+percentiles.</li>
+<li><b>Daily 15:00 UTC:</b> full collection — every OpenRouter model × provider endpoint, ORNN, RunPod,
+Kalshi, InferenceX, venue stack, secondary hardware market.</li>
+<li><b>Daily 16:45 UTC:</b> the site republishes — indices recomputed, every chart regenerated. The
+banner&#39;s &quot;latest data&quot; date reflects the last completed cycle.</li>
+</ul>
+
+<h2>Model conventions</h2>
+<ul>
+<li><b>Ceiling vs realized.</b> &quot;Ceiling&quot; figures assume sold-out 24/7 at quoted prices. &quot;Realized&quot;
+figures apply the operating chain: 95% online × 97% SLA pass × 70% paid utilization (an assumption —
+no public source measures it) × 85% share-and-price realization − $0.25/GPU-hr power + colo.</li>
+<li><b>Cache handling.</b> Prices are measured token-weighted effective prices, so observed caching is
+already in the settle; no separate cache multiplier (it would double-count).</li>
+<li><b>Hyperscaler and spot venues (added 2026-08-24).</b> Azure via its official
+retail prices API — the richest source on the desk, returning every SKU &times; region &times; tier, so
+on-demand, spot, Low Priority and reserved arrive together (H100 <code>NC40ads_H100_v5</code> in East US: on-demand $6.98, spot $1.29, Low Priority $1.40). These are raw IaaS virtual machines, not managed inference &mdash; the query filters on <code>serviceName eq 'Virtual Machines'</code> and the rows return <code>serviceFamily: Compute</code>, so Azure’s hosted-inference products cannot enter this series. AWS via the public Spot advisor feed,
+<b>spot only</b> &mdash; its on-demand list is published elsewhere and is deliberately not inferred
+from it. Only <b>single-GPU</b> SKUs (<code>NC40ads</code>, <code>p5.4xlarge</code>) are used in
+cross-venue comparisons, because they need no bundling divisor. Region dispersion is large &mdash;
+Azure H100 spot spans roughly $1.29&ndash;$2.18 across 25 regions &mdash; so the cheapest region is
+quoted and named. Spheron is collected but currently yields nothing: its rate table is
+client-rendered, and its prices are on-demand rather than spot despite being commonly cited as
+spot.</li>
+<li><b>Bundled specs are NOT normalized.</b> Every $/GPU-hr on this desk divides a
+price that may also buy vCPU, RAM and local storage, and those bundles differ wildly between SKUs —
+Mithril&rsquo;s H100 instance carries 12.5TB of NVMe against 1.1TB on its H200, which alone moves the
+per-GPU figure from $4.81 to $1.70. We do not adjust for this, because only Mithril and CoreWeave
+publish the bundle; ORNN, Silicon Data, SemiAnalysis, Prime Intellect, SF Compute and the serving
+platforms publish nothing, and subtracting an imputed storage cost would require a $/GB-hr price we
+would have to invent. So the composite, the ledger&rsquo;s Rent column, the crack spread and the
+break-even clock all inherit this: they compare prices for goods that are similar, not identical.
+Read the cross-venue band as the width of that ambiguity, not as error around a true price.</li>
+<li><b>Per-GPU basis.</b> All per-GPU figures divide by the full serving pool (including prefill GPUs);
+NVL72 rack systems divide by 72 on both cost and throughput.</li>
+<li><b>Evidence labels.</b> Street estimate ≠ formal quote ≠ landed cost; thin-market rack rents are
+indications, not executable quotes; depreciation is market-implied only where secondary prints exist.</li>
+</ul>
+
+<h2>Caveats</h2>
+<ul>
+<li>Benchmarks cover open models only; medians are menu statistics, not volume weights.</li>
+<li>Serving software improves monthly — the physics layer itself drifts upward.</li>
+<li>Street prices move; ranges are point-in-time and evidence-labeled.</li>
+</ul>
+<p style="font-family:ui-monospace,Menlo,monospace;font-size:.74rem;color:#5B6660;margin-top:40px">
+The Compute Baltic · Danning Sui · in collaboration with Tarun Chitra (Robot Ventures) and Marvin Tong (Phala Network)</p>
+
+<h2>Data inventory &amp; venue set (v1.2)</h2>
+<p>Everything the desk collects, and what role it plays in the index. The composite uses <b>market
+venues only</b>; reference quotes are tracked and displayed but excluded by design.</p>
+
+<div class="callout" style="border-left:3px solid #DC3400;padding:12px 14px;margin:14px 0;background:#FAFAF8">
+<b>Fills versus asks — the asymmetry to read every margin through.</b> The revenue leg of the
+margin is <b>settled</b>: OpenRouter effective prices are what buyers were actually billed on live
+traffic, cache included. The cost leg is almost entirely <b>quoted</b> — venue asks and posted rate
+cards, not cleared trades. Only <a href="https://sfcompute.com">SF Compute</a> runs an order book and
+prints cleared prices, and it clears H100 roughly <b>30% below</b> our five-venue composite. Taken
+alone, a quoted cost leg <i>understates</i> the token margin. But the revenue leg is biased the other
+way and by more, because it is a sold-out ceiling — so the two errors oppose, and only the rent one is
+currently measurable. Read every margin as a bracket, and read the <b>break-even utilization</b>
+column as the number that tells you how much revenue-side error the trade can absorb.
+<br><br>
+A second consequence of a quote-based cost leg: <b>the quotes do not move.</b> Across the neocloud and
+inference-principal rate cards we track, <b>0 of 43</b> vendor-SKU series changed price over eight days
+of daily observation — which is why they are collected but kept out of the composite.
+<br><br>
+<b>Specs are not matched — but the contract type is.</b> A composite &ldquo;H100&rdquo; blends SXM and
+PCIe parts, vetted-datacenter and marketplace-host tiers, and every geography; none of the venues
+publishes interconnect, and region is country-level at best. The cross-venue band is therefore not
+error around a true price — it is the absence of a single underlying.
+<br><br>
+The one dimension we <i>do</i> hold fixed is the product: <b>every series in the composite is
+on-demand hourly</b>. GPU rates are ordered by delivery promise — an interruptible or preemptible hour
+prices below a guaranteed on-demand hour, and a committed reserved term prices below both — so
+blending them would drag the median down and read as a cheaper market rather than a different product.
+Collected but excluded on those grounds: RunPod&rsquo;s reserved rates (1wk/1mo/3mo/6mo),
+vast.ai&rsquo;s bid/interruptible book, Prime Intellect&rsquo;s spot and community tiers, Mithril&rsquo;s
+spot instances. Two imperfections remain: ORNN and Silicon Data publish a single daily index number
+without documenting its term, so both are <i>assumed</i> on-demand; and SF Compute&rsquo;s clearing
+average pools every duration traded that day, its contracts being arbitrary-length.
+</div>
+
+<ul>
+<li><b>Index venues, active:</b> <a href="https://vast.ai">vast.ai</a> (order-book sweeps at 5-minute
+resolution + feed history, from 2026-01-28) · <a href="https://ornnai.com">ORNN</a> (transacted index) ·
+<a href="https://www.runpod.io">RunPod</a> (posted on-demand, daily from 2026-07-28) ·
+<a href="https://sfcompute.com">SF Compute</a> (daily order-book clearing average, from 2026-07-25 —
+<b>the only cleared price in the venue set</b>; H100 prints most days, H200/B200 list but rarely trade).</li>
+<li><b>Index venues, ramping:</b> <a href="https://www.silicondata.com">Silicon Data</a> (daily H100/H200/B200
+index prints, collected from 2026-08-11 — the same index family CME&rsquo;s October futures settle on) ·
+<a href="https://www.primeintellect.ai">Prime Intellect</a> (posted on-demand per-GPU, from 2026-08-11).
+A venue joins a family&rsquo;s median mechanically after <b>14 reporting days within a 16-day window</b>;
+both are on track to admit in late August. Until then they appear in the coverage lanes but not the median.</li>
+<li><b>Tracked, excluded from the index by design:</b> posted list prices from neoclouds (CoreWeave, Nebius,
+Crusoe) and AI principals (Fireworks, Together, Modal, Baseten), collected daily from 2026-08-12 — rate-card
+asks are sticky and rarely paid at size; including them would bias the median upward and deaden the index.
+Mithril (spot/interruptible 7-day averages) — a different firmness of delivery than the on-demand hour the
+index prices. Chutes (decentralized marketplace) — monitored, thin. Empirically, the exclusion is
+justified by stickiness rather than by level: none of the 43 tracked vendor-SKU rate-card series moved
+across eight days of daily observation.</li>
+<li><b>Reference series (not spot inputs):</b> CME &times; Silicon Data compute futures — announced August 11 (the launch the financialization
+commentary covers); <b>no market data exists until trading opens October 5</b>, at which point daily
+settlement prints will be collected as the market&rsquo;s first term structure · SemiAnalysis quarterly
+H100 1-yr contract index · Kalshi GPU prediction ladders · Itô compute baskets (NAVs) · Architect/AX listed compute futures — dated H100/H200/B200/B300 contracts (Sep &amp; Dec 2026, 730 GPU-hr multiplier) live since 2026-08-13, the first listed GPU term structure; specs snapshotted daily, marks gated behind exchange auth ·
+Compute Exchange secondary hardware quotes (capital-asset prices, not rentals) · USD.ai financing yields.</li>
+</ul>
+<h2>Version history</h2>
+<ul>
+<li><b>v1.3</b> (2026-08-24) — <b>SF Compute admitted</b>, the venue set&rsquo;s first cleared-price
+source (order-book daily clearing average; H100 in practice). Both legs of the margin now share one
+<b>trailing 7-day window</b>, with rents averaged per venue before the cross-venue median so a
+venue&rsquo;s reporting calendar cannot move the level. Composite day universe now spans every venue
+rather than vast alone, and a venue&rsquo;s last print carries forward at most 3 days — a stalled
+vast collector had frozen all rents for six days under a current as-of stamp. Mithril removed from
+the ledger rent to match this page (it had been included there while excluded here). Prefill/decode
+throughputs rescaled onto the full installed pool, which lowers rack-scale revenue materially
+(~3&times; on GB200/GB300, where ~90% of benchmarked configs are disaggregated).</li>
+<li><b>v1.2</b> (2026-08-17) — venue set expanded: Silicon Data and Prime Intellect added with a mechanical
+14-of-16-day venue admission rule; list-price and spot quotes documented as tracked-but-excluded. No level
+change on adoption date (both venues still ramping).</li>
+<li><b>v1.1</b> (2026-08-14) — fleet-share weighting, mechanical family admission, B300 candidate status.</li>
+<li><b>v1.0</b> (2026-08-13) — launch: equal-weight cross-venue medians, base 1000 on 2026-01-28.</li>
+</ul>
+<div id="cbfoot"></div></div></body></html>
