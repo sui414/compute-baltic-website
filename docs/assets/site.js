@@ -18,11 +18,11 @@
       '<a class="cb-brand" href="'+ROOT+'">The Compute Baltic</a>'+
       '<span class="cb-tag">Benchmarks for the compute economy</span>'+
       '<nav>'+
+      '<a href="'+ROOT+'about/"'+cur('about',c)+'>About</a>'+
       '<a href="'+ROOT+'"'+cur('dash',c)+'>Dashboard</a>'+
+      '<a href="'+ROOT+'methodology/"'+cur('meth',c)+'>Methodology</a>'+
       '<span class="cbn-mw"><span class="cbn-mi" tabindex="0"'+(c==='articles'?' style="color:#DC3400"':'')+'>Articles ▾</span>'+
       '<span class="cbn-dd"><a href="'+ROOT+'article/">#1 · The Margin in the Machine</a></span></span>'+
-      '<a href="'+ROOT+'methodology/"'+cur('meth',c)+'>Methodology</a>'+
-      '<a href="'+ROOT+'about/"'+cur('about',c)+'>About</a>'+
       '</nav>';
   }
   var foot=document.getElementById('cbfoot');
