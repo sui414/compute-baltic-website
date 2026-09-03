@@ -71,7 +71,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #11
  .tick{padding:8px 12px 9px 0;margin-right:12px}
 }
 </style><div class="wrap"><header>
-  <div id="cbnav" data-nav="minimal"></div><script src="assets/site.js?v=4" defer></script>
+  <div id="cbnav" data-current="dash"></div><script src="assets/site.js?v=4" defer></script>
   <div id="cbiStrip"></div>
 </header>
   <div class="asofline">latest data: 2026-08-25 · daily refresh</div>
@@ -94,13 +94,48 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #11
     <div><b>Base</b>1000 on 2026-01-28 — first day of the cross-venue record</div>
     <div><b>Cadence</b>Recomputed daily 16:45 UTC</div>
     <div><b>Specification</b><a href="methodology/">Full methodology →</a> · hover ticker metrics for definitions</div>
+  </div><nav class="tabs"><button class="tab on" data-t="gpu">Compute Margin</button><button class="tab" data-t="desk">GPU Index</button><button class="tab" data-t="token">Token Index</button><button class="tab" data-t="xray">Provider Landscape</button><button class="tab" data-t="capacity">Liquidity Curve</button><button class="tab" data-t="compat">Model Compatibility</button></nav><div id="tab-gpu" style="display:block">
+  <div style="border:1px solid var(--line);border-left:3px solid var(--ink);padding:34px 30px;margin:26px 0;max-width:640px">
+    <div style="font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.2em">Compute Margin</div>
+    <p class="caption" style="margin:10px 0 0">Being assessed daily and rolled out here soon. The
+    numbers already exist — the section is being rebuilt for publication, piece by piece.</p>
   </div>
+</div><div id="tab-desk" style="display:none">
+  <div style="border:1px solid var(--line);border-left:3px solid var(--ink);padding:34px 30px;margin:26px 0;max-width:640px">
+    <div style="font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.2em">GPU Index</div>
+    <p class="caption" style="margin:10px 0 0">Being assessed daily and rolled out here soon. The
+    numbers already exist — the section is being rebuilt for publication, piece by piece.</p>
+  </div>
+</div><div id="tab-token" style="display:none">
+  <div style="border:1px solid var(--line);border-left:3px solid var(--ink);padding:34px 30px;margin:26px 0;max-width:640px">
+    <div style="font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.2em">Token Index</div>
+    <p class="caption" style="margin:10px 0 0">Being assessed daily and rolled out here soon. The
+    numbers already exist — the section is being rebuilt for publication, piece by piece.</p>
+  </div>
+</div><div id="tab-xray" style="display:none">
+  <div style="border:1px solid var(--line);border-left:3px solid var(--ink);padding:34px 30px;margin:26px 0;max-width:640px">
+    <div style="font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.2em">Provider Landscape</div>
+    <p class="caption" style="margin:10px 0 0">Being assessed daily and rolled out here soon. The
+    numbers already exist — the section is being rebuilt for publication, piece by piece.</p>
+  </div>
+</div><div id="tab-capacity" style="display:none">
+  <div style="border:1px solid var(--line);border-left:3px solid var(--ink);padding:34px 30px;margin:26px 0;max-width:640px">
+    <div style="font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.2em">Liquidity Curve</div>
+    <p class="caption" style="margin:10px 0 0">Being assessed daily and rolled out here soon. The
+    numbers already exist — the section is being rebuilt for publication, piece by piece.</p>
+  </div>
+</div><div id="tab-compat" style="display:none">
+  <div style="border:1px solid var(--line);border-left:3px solid var(--ink);padding:34px 30px;margin:26px 0;max-width:640px">
+    <div style="font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.2em">Model Compatibility</div>
+    <p class="caption" style="margin:10px 0 0">Being assessed daily and rolled out here soon. The
+    numbers already exist — the section is being rebuilt for publication, piece by piece.</p>
+  </div>
+</div>
   <div style="margin:44px 0 8px;border-top:2px solid var(--ink);padding-top:14px;max-width:560px">
     <div style="font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.2em">Follow the compute market</div>
     <p class="caption" style="margin:8px 0 10px">Daily-assessed benchmarks for GPU rental and token
-    economics. Research and the full desk are being rolled out here gradually — leave an email to
-    follow along.</p>
-    <form onsubmit="var v=this.email.value.trim();if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){location.href='mailto:danning@panteracapital.com?subject='+encodeURIComponent('Follow The Compute Baltic')+'&body='+encodeURIComponent('Please add me to the update list: '+v);this.querySelector('button').textContent='thanks —  check your mail app';}return false;"
+    economics. The desk is being rolled out here section by section — leave an email to follow along.</p>
+    <form onsubmit="var v=this.email.value.trim();if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){location.href='mailto:danning@panteracapital.com?subject='+encodeURIComponent('Follow The Compute Baltic')+'&body='+encodeURIComponent('Please add me to the update list: '+v);this.querySelector('button').textContent='thanks — check your mail app';}return false;"
       style="display:flex;gap:8px;max-width:430px">
       <input name="email" type="email" required placeholder="you@fund.com" aria-label="Email address"
         style="flex:1;border:1px solid var(--ink);padding:9px 11px;font-size:.85rem;font-family:var(--sans)">
@@ -118,6 +153,12 @@ function WMALL(){document.querySelectorAll('svg').forEach(function(sv){
   sv.parentNode.insertBefore(d,sv); d.appendChild(sv);
 })}
 WMALL();
+document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');
+  document.querySelectorAll('[id^=tab-]').forEach(function(p){p.style.display='none'});
+  var p=document.getElementById('tab-'+b.dataset.t); if(p) p.style.display='block';
+})});
 if(D.strip){
   const el=document.getElementById('cbiStrip');
   if(el) el.innerHTML=D.strip.map(c=>`<span class="tick" data-tip="${c.tip}"><span class="tk">${c.k}</span><span class="tv">${c.v} <span class="ts ${c.up!==undefined?(c.up?'up':''):''}">${c.up!==undefined?(c.up?'▲ ':'▼ '):''}${c.sub}</span></span></span>`).join('');
