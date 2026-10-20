@@ -65,8 +65,10 @@ button.pill{
 button.pill:hover{background:var(--surface-2)}
 button.pill[aria-pressed="true"]{background:var(--pill-on);color:var(--pill-on-ink);border-color:var(--pill-on);font-weight:600}
 button.pill:focus-visible,.row:focus-visible,.pt:focus-visible{outline:2px solid var(--nebius);outline-offset:2px}
+.themebtn{margin-left:auto;font-size:15px;line-height:1;padding:5px 12px}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 332px;gap:16px;align-items:start}
-@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.main{display:flex;flex-direction:column;gap:12px;min-width:0}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .mapcard{position:relative}
 #map{display:block;width:100%;height:auto;background:var(--sea);cursor:grab;touch-action:none}
@@ -88,12 +90,12 @@ button.pill:focus-visible,.row:focus-visible,.pt:focus-visible{outline:2px solid
 .tip .tl{color:var(--tip-ink-2)}
 .tip .key{display:inline-block;width:12px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
 .side{display:flex;flex-direction:column;gap:12px}
-.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
 .kpi .kl{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
 .kpi .kv{font-size:22px;font-weight:600;margin-top:2px;font-variant-numeric:tabular-nums}
 .kpi .kd{font-size:12px;color:var(--ink-2);margin-top:1px}
-.ranked{padding:4px 0;max-height:520px;overflow-y:auto}
+.ranked{padding:4px 0;max-height:640px;overflow-y:auto}
 .ranked h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
   font-weight:600;margin:10px 16px 6px}
 .row{display:grid;grid-template-columns:15px 1fr 64px;align-items:center;gap:9px;
@@ -131,9 +133,11 @@ button.pill:focus-visible,.row:focus-visible,.pt:focus-visible{outline:2px solid
 <div class="filters">
   <div class="fgroup"><span class="flabel">GPU</span><div class="pills" id="gpuPills" role="group" aria-label="GPU model"></div></div>
   <div class="fgroup"><span class="flabel">Tier</span><div class="pills" id="tierPills" role="group" aria-label="Price tier"></div></div>
+  <button class="pill themebtn" id="themeBtn" type="button" aria-label="Toggle dark mode">☾</button>
 </div>
 
 <div class="layout">
+  <div class="main">
   <div class="card mapcard">
     <svg id="map" viewBox="0 0 960 500" role="img" aria-label="World map of GPU prices by region"></svg>
     <div class="zoomctl">
@@ -144,8 +148,9 @@ button.pill:focus-visible,.row:focus-visible,.pt:focus-visible{outline:2px solid
     <div class="maplegend" id="legend"></div>
     <div class="tip" id="tip" role="status"></div>
   </div>
+  <div class="kpis" id="kpis"></div>
+  </div>
   <div class="side">
-    <div class="kpis" id="kpis"></div>
     <div class="card ranked" id="ranked"></div>
   </div>
 </div>
@@ -165,7 +170,7 @@ const GPUS = ['H100','H200','A100','B200','B300'];
 const TIERS = [['spot','Spot'],['on-demand','On-demand']];
 let gpu = 'H100', tier = 'spot';
 
-const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const colorOf = v => 'var(' + VENDORS[v].cssVar + ')';
 
 /* ---------- projection: Natural Earth ---------- */
 function natEarth(lonDeg, latDeg){
@@ -235,7 +240,7 @@ function showTip(p, x, y){
   v.textContent = fmt(p.p) + ' /GPU-hr';
   const name = document.createElement('div');
   const key = document.createElement('span'); key.className = 'key';
-  key.style.background = css(VENDORS[p.v].cssVar);
+  key.style.background = colorOf(p.v);
   name.append(key, document.createTextNode(VENDORS[p.v].name + ' · ' + p.l));
   const meta = document.createElement('div'); meta.className = 'tl';
   meta.textContent = p.r + ' · ' + p.sku;
@@ -272,7 +277,7 @@ function render(){
   for (const p of sorted){
     const r = radius(p.p, lo, hi) / Math.sqrt(zoom);
     const dot = el('circle', {cx:p.x, cy:p.y, r});
-    dot.style.fill = css(VENDORS[p.v].cssVar);
+    dot.style.fill = colorOf(p.v);
     dot.style.stroke = 'var(--surface)'; dot.style.strokeWidth = '1.5';
     dot.style.opacity = '0.92';
     const hit = el('circle', {cx:p.x, cy:p.y, r:Math.max(r+6,13), fill:'transparent', tabindex:'0', role:'img',
@@ -330,7 +335,7 @@ function renderSide(pts, lo){
   for (const p of [...pts].sort((a,b)=>a.p-b.p)){
     const row = document.createElement('button'); row.className = 'row'; row.type = 'button';
     const dot = document.createElement('span'); dot.className = 'rd';
-    dot.style.background = css(VENDORS[p.v].cssVar);
+    dot.style.background = colorOf(p.v);
     const mid = document.createElement('span'); mid.className = 'rl';
     const rn = document.createElement('div'); rn.className = 'rn'; rn.textContent = p.l;
     const rr = document.createElement('div'); rr.className = 'rr';
@@ -338,7 +343,7 @@ function renderSide(pts, lo){
     const bar = document.createElement('div'); bar.className = 'rbar';
     const fill = document.createElement('i');
     fill.style.width = (p.p/hi*100).toFixed(1) + '%';
-    fill.style.background = css(VENDORS[p.v].cssVar);
+    fill.style.background = colorOf(p.v);
     bar.append(fill); mid.append(rn, rr, bar);
     const rp = document.createElement('span'); rp.className = 'rp mono'; rp.textContent = fmt(p.p);
     row.append(dot, mid, rp);
@@ -410,7 +415,7 @@ function chips(){
   const mk = (vendor, txt) => {
     const c = document.createElement('span'); c.className = 'chip';
     const d = document.createElement('i'); d.className = 'dot';
-    d.style.background = css(VENDORS[vendor].cssVar);
+    d.style.background = colorOf(vendor);
     const b = document.createElement('b'); b.textContent = VENDORS[vendor].name;
     c.append(d, b, document.createTextNode(txt));
     host.append(c);
@@ -422,7 +427,7 @@ function chips(){
   const lg = document.getElementById('legend');
   for (const v in VENDORS){
     const s = document.createElement('span');
-    const i = document.createElement('i'); i.style.background = css(VENDORS[v].cssVar);
+    const i = document.createElement('i'); i.style.background = colorOf(v);
     s.append(i, document.createTextNode(VENDORS[v].name));
     lg.append(s);
   }
@@ -474,8 +479,25 @@ document.getElementById('zin').addEventListener('click', ()=>zoomAt(1/1.5, svg.c
 document.getElementById('zout').addEventListener('click', ()=>zoomAt(1.5, svg.clientWidth/2, svg.clientHeight/2));
 document.getElementById('zreset').addEventListener('click', ()=>{ vb = {...VB0}; applyVB(); });
 
-/* theme swap repaints vendor colors on dots/bars */
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+/* ---------- theme toggle ---------- */
+const themeBtn = document.getElementById('themeBtn');
+const sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+const effTheme = () => document.documentElement.dataset.theme || (sysDark.matches ? 'dark' : 'light');
+function paintThemeBtn(){
+  const dark = effTheme() === 'dark';
+  themeBtn.textContent = dark ? '\u2600' : '\u263e';
+  themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+}
+try { const saved = localStorage.getItem('cb-theme');
+  if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved; } catch(e){}
+themeBtn.addEventListener('click', () => {
+  const next = effTheme() === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem('cb-theme', next); } catch(e){}
+  paintThemeBtn();
+});
+sysDark.addEventListener('change', paintThemeBtn);
+paintThemeBtn();
 
 chips(); drawFilters(); render();
 </script>
