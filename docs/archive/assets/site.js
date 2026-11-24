@@ -23,7 +23,8 @@
       '<a href="'+ROOT+'map/"'+cur('map',c)+'>Price Map</a>'+
       '<a href="'+ROOT+'methodology/"'+cur('meth',c)+'>Methodology</a>'+
       '<span class="cbn-mw"><span class="cbn-mi" tabindex="0"'+(c==='articles'?' style="color:#DC3400"':'')+'>Articles ▾</span>'+
-      '<span class="cbn-dd"><a href="'+ROOT+'article/">#1 · The Margin in the Machine</a></span></span>'+
+      '<span class="cbn-dd"><a href="'+ROOT+'article/">#1 · The Margin in the Machine</a>'+
+      '<a href="'+ROOT+'article/jevons/">#2 · The Jevons Test</a></span></span>'+
       '</nav>';
   }
   var foot=document.getElementById('cbfoot');
